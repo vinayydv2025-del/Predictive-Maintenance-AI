@@ -1,0 +1,43 @@
+﻿# Python cache
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets
+data/raw/
+data/processed/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+
+# Experiment tracking
+mlruns/
+.mlruns/
+wandb/
+
+# Operating system and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

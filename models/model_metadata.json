@@ -1,0 +1,31 @@
+{
+    "model_name": "XGBoost",
+    "target": "Machine failure",
+    "features": [
+        "Air temperature [K]",
+        "Process temperature [K]",
+        "Rotational speed [rpm]",
+        "Torque [Nm]",
+        "Tool wear [min]",
+        "Type"
+    ],
+    "numeric_features": [
+        "Air temperature [K]",
+        "Process temperature [K]",
+        "Rotational speed [rpm]",
+        "Torque [Nm]",
+        "Tool wear [min]"
+    ],
+    "categorical_features": [
+        "Type"
+    ],
+    "threshold": 0.8260806798934937,
+    "threshold_selection": "Maximum validation F1",
+    "selection_metric": "Validation PR-AUC",
+    "random_state": 42,
+    "split": {
+        "training": 0.6,
+        "validation": 0.2,
+        "test": 0.2
+    }
+}

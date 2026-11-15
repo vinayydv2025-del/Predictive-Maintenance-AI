@@ -1,0 +1,9 @@
+feature,mean_absolute_shap
+numeric__Torque (Nm),2.025023
+numeric__Tool wear (min),1.6279889
+numeric__Rotational speed (rpm),1.4442662
+numeric__Air temperature (K),1.1062607
+numeric__Process temperature (K),0.4941522
+categorical__Type_M,0.13822168
+categorical__Type_L,0.08569443
+categorical__Type_H,0.03411726

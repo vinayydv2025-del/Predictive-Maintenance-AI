@@ -1,0 +1,29 @@
+PREDICTIVE MAINTENANCE DATA QUALITY REPORT
+==================================================
+
+Dataset shape: (10000, 14)
+Missing values: 0
+Duplicate rows: 0
+
+Target distribution:
+Machine failure
+0    9661
+1     339
+
+Failure modes:
+TWF     46
+HDF    115
+PWF     95
+OSF     98
+RNF     19
+
+Sensor statistics:
+       Air temperature [K]  Process temperature [K]  Rotational speed [rpm]  Torque [Nm]  Tool wear [min]
+count              10000.0                 10000.00                10000.00     10000.00         10000.00
+mean                 300.0                   310.01                 1538.78        39.99           107.95
+std                    2.0                     1.48                  179.28         9.97            63.65
+min                  295.3                   305.70                 1168.00         3.80             0.00
+25%                  298.3                   308.80                 1423.00        33.20            53.00
+50%                  300.1                   310.10                 1503.00        40.10           108.00
+75%                  301.5                   311.10                 1612.00        46.80           162.00
+max                  304.5                   313.80                 2886.00        76.60           253.00
