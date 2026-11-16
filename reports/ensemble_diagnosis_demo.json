@@ -1,0 +1,100 @@
+{
+    "timestamp": "2026-11-16T10:27:36.127185+00:00",
+    "machine_id": "DEMO-MACHINE-001",
+    "machine_type": "M",
+    "input_reading": {
+        "machine_id": "DEMO-MACHINE-001",
+        "machine_type": "M",
+        "air_temperature": 300.0,
+        "process_temperature": 310.0,
+        "rotational_speed": 1500.0,
+        "torque": 40.0,
+        "tool_wear": 200.0,
+        "operating_hours": 250.0
+    },
+    "model_outputs": {
+        "failure_prediction": {
+            "model": "XGBoost",
+            "training_domain": "UCI AI4I 2020 dataset",
+            "prediction": "NO_FAILURE_ALERT",
+            "failure_score": 0.001787,
+            "decision_threshold": 0.826081,
+            "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+        },
+        "anomaly_detection": {
+            "model": "Isolation Forest",
+            "training_domain": "Synthetic industrial simulator",
+            "prediction": "NORMAL",
+            "anomaly_score": 0.511853,
+            "decision_threshold": 0.527733
+        },
+        "fault_classification": {
+            "model": "Noise-aware Random Forest",
+            "training_domain": "Synthetic industrial simulator",
+            "predicted_fault": "NORMAL",
+            "class_scores": {
+                "NORMAL": 0.993333,
+                "OVERHEATING": 0.0,
+                "OVERLOAD": 0.0,
+                "SPEED_ANOMALY": 0.006667
+            },
+            "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+        },
+        "multilabel_fault_classification": {
+            "model": "Multi-label Random Forest",
+            "training_domain": "Synthetic multi-label fault simulator",
+            "detected_faults": [],
+            "fault_count": 0,
+            "fault_results": {
+                "OVERHEATING": {
+                    "score": 0.0,
+                    "threshold": 0.365,
+                    "detected": false
+                },
+                "OVERLOAD": {
+                    "score": 0.0078,
+                    "threshold": 0.78,
+                    "detected": false
+                },
+                "SPEED_ANOMALY": {
+                    "score": 0.002833,
+                    "threshold": 0.05,
+                    "detected": false
+                }
+            },
+            "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+        }
+    },
+    "final_diagnosis": {
+        "diagnosis": "NORMAL_OPERATION",
+        "severity": "NORMAL",
+        "severity_reason": "No equipment fault or risk alert was raised.",
+        "detected_faults": [],
+        "supporting_alert_count": 0,
+        "evidence": {
+            "xgboost_failure_alert": false,
+            "isolation_forest_anomaly": false,
+            "multilabel_fault_count": 0,
+            "legacy_classifier_prediction": "NORMAL",
+            "sensor_quality_warning": false
+        },
+        "sensor_quality": {
+            "status": "NOT_ASSESSED",
+            "known_simulation_flag": false,
+            "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+        },
+        "recommendations": [
+            "Continue routine monitoring and scheduled maintenance."
+        ],
+        "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+    },
+    "limitations": [
+        "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+        "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+        "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+        "Model scores are not guaranteed calibrated probabilities.",
+        "Sensor quality is not independently established from a single reading.",
+        "Severity is assigned using transparent engineering rules that require further validation.",
+        "The system is a research prototype, not a certified industrial safety system."
+    ]
+}

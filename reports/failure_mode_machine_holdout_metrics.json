@@ -1,0 +1,128 @@
+{
+    "model_name": "RandomForestClassifier",
+    "experiment": "Machine-held-out failure-mode classification",
+    "features": [
+        "air_temperature",
+        "process_temperature",
+        "rotational_speed",
+        "torque",
+        "tool_wear",
+        "operating_hours",
+        "machine_type"
+    ],
+    "classes": [
+        "NORMAL",
+        "OVERHEATING",
+        "OVERLOAD",
+        "SPEED_ANOMALY"
+    ],
+    "training_machines": [
+        "MACHINE-001",
+        "MACHINE-004",
+        "MACHINE-006",
+        "MACHINE-007",
+        "MACHINE-008",
+        "MACHINE-010",
+        "MACHINE-011",
+        "MACHINE-013",
+        "MACHINE-015",
+        "MACHINE-016",
+        "MACHINE-017",
+        "MACHINE-020"
+    ],
+    "calibration_machines": [
+        "MACHINE-003",
+        "MACHINE-012",
+        "MACHINE-019"
+    ],
+    "unseen_test_machines": [
+        "MACHINE-002",
+        "MACHINE-005",
+        "MACHINE-009",
+        "MACHINE-014",
+        "MACHINE-018"
+    ],
+    "training_rows": 6000,
+    "calibration_rows": 1500,
+    "testing_rows": 2500,
+    "calibration_accuracy": 1.0,
+    "test_accuracy": 0.9996,
+    "classification_report": {
+        "NORMAL": {
+            "precision": 1.0,
+            "recall": 0.9995569339831635,
+            "f1-score": 0.9997784179038334,
+            "support": 2257.0
+        },
+        "OVERHEATING": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 75.0
+        },
+        "OVERLOAD": {
+            "precision": 0.9887640449438202,
+            "recall": 1.0,
+            "f1-score": 0.9943502824858758,
+            "support": 88.0
+        },
+        "SPEED_ANOMALY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 80.0
+        },
+        "accuracy": 0.9996,
+        "macro avg": {
+            "precision": 0.997191011235955,
+            "recall": 0.9998892334957908,
+            "f1-score": 0.9985321750974273,
+            "support": 2500.0
+        },
+        "weighted avg": {
+            "precision": 0.9996044943820225,
+            "recall": 0.9996,
+            "f1-score": 0.9996010856270836,
+            "support": 2500.0
+        }
+    },
+    "confusion_matrix": [
+        [
+            2256,
+            0,
+            1,
+            0
+        ],
+        [
+            0,
+            75,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            88,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            80
+        ]
+    ],
+    "confusion_matrix_labels": [
+        "NORMAL",
+        "OVERHEATING",
+        "OVERLOAD",
+        "SPEED_ANOMALY"
+    ],
+    "data_source": "Synthetic industrial simulator",
+    "limitations": [
+        "Failure-mode labels come from controlled synthetic fault injection.",
+        "The calibration machines are not used to fit the model.",
+        "No hyperparameter tuning is performed on the final test machines.",
+        "Results do not establish real-world industrial diagnostic accuracy."
+    ]
+}

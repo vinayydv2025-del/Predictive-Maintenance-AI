@@ -1,0 +1,293 @@
+{
+    "experiment": "Adversarial robustness testing",
+    "model": "RandomForest failure-mode classifier",
+    "unseen_test_machines": [
+        "MACHINE-002",
+        "MACHINE-005",
+        "MACHINE-009",
+        "MACHINE-014",
+        "MACHINE-018"
+    ],
+    "test_observations": 2500,
+    "random_seed": 42,
+    "data_source": "Synthetic industrial simulator",
+    "scenarios": [
+        {
+            "scenario": "BASELINE",
+            "accuracy": 0.9996,
+            "macro_f1": 0.9985321750974273,
+            "weighted_f1": 0.9996010856270836,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 1.0,
+                    "recall": 0.9995569339831635,
+                    "f1-score": 0.9997784179038334,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.9887640449438202,
+                    "recall": 1.0,
+                    "f1-score": 0.9943502824858758,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 80.0
+                },
+                "accuracy": 0.9996,
+                "macro avg": {
+                    "precision": 0.997191011235955,
+                    "recall": 0.9998892334957908,
+                    "f1-score": 0.9985321750974273,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9996044943820225,
+                    "recall": 0.9996,
+                    "f1-score": 0.9996010856270836,
+                    "support": 2500.0
+                }
+            }
+        },
+        {
+            "scenario": "LOW_SENSOR_NOISE",
+            "accuracy": 0.9984,
+            "macro_f1": 0.9942227149544223,
+            "weighted_f1": 0.9984170682434096,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 1.0,
+                    "recall": 0.998227735932654,
+                    "f1-score": 0.9991130820399113,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.9565217391304348,
+                    "recall": 1.0,
+                    "f1-score": 0.9777777777777777,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 80.0
+                },
+                "accuracy": 0.9984,
+                "macro avg": {
+                    "precision": 0.9891304347826086,
+                    "recall": 0.9995569339831635,
+                    "f1-score": 0.9942227149544223,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9984695652173914,
+                    "recall": 0.9984,
+                    "f1-score": 0.9984170682434096,
+                    "support": 2500.0
+                }
+            }
+        },
+        {
+            "scenario": "HIGH_SENSOR_NOISE",
+            "accuracy": 0.9864,
+            "macro_f1": 0.9544332210998877,
+            "weighted_f1": 0.9870904826038158,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 0.9982070820259973,
+                    "recall": 0.9867080194949047,
+                    "f1-score": 0.9924242424242424,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.7589285714285714,
+                    "recall": 0.9659090909090909,
+                    "f1-score": 0.85,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 0.9634146341463414,
+                    "recall": 0.9875,
+                    "f1-score": 0.9753086419753086,
+                    "support": 80.0
+                },
+                "accuracy": 0.9864,
+                "macro avg": {
+                    "precision": 0.9301375719002275,
+                    "recall": 0.985029277600999,
+                    "f1-score": 0.9544332210998877,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9887249076600391,
+                    "recall": 0.9864,
+                    "f1-score": 0.9870904826038158,
+                    "support": 2500.0
+                }
+            }
+        },
+        {
+            "scenario": "WEAK_FAULT_SIGNALS",
+            "accuracy": 0.9976,
+            "macro_f1": 0.9909470644553569,
+            "weighted_f1": 0.9975731554402544,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 0.9977885891198585,
+                    "recall": 0.9995569339831635,
+                    "f1-score": 0.99867197875166,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.9880952380952381,
+                    "recall": 0.9431818181818182,
+                    "f1-score": 0.9651162790697675,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 80.0
+                },
+                "accuracy": 0.9976,
+                "macro avg": {
+                    "precision": 0.9964709568037742,
+                    "recall": 0.9856846880412454,
+                    "f1-score": 0.9909470644553569,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9975844906383605,
+                    "recall": 0.9976,
+                    "f1-score": 0.9975731554402544,
+                    "support": 2500.0
+                }
+            }
+        },
+        {
+            "scenario": "OVERLAPPING_FAULTS",
+            "accuracy": 0.9996,
+            "macro_f1": 0.9985321750974273,
+            "weighted_f1": 0.9996010856270836,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 1.0,
+                    "recall": 0.9995569339831635,
+                    "f1-score": 0.9997784179038334,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.9887640449438202,
+                    "recall": 1.0,
+                    "f1-score": 0.9943502824858758,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 80.0
+                },
+                "accuracy": 0.9996,
+                "macro avg": {
+                    "precision": 0.997191011235955,
+                    "recall": 0.9998892334957908,
+                    "f1-score": 0.9985321750974273,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9996044943820225,
+                    "recall": 0.9996,
+                    "f1-score": 0.9996010856270836,
+                    "support": 2500.0
+                }
+            }
+        },
+        {
+            "scenario": "SENSOR_DRIFT",
+            "accuracy": 0.9956,
+            "macro_f1": 0.9846834136719311,
+            "weighted_f1": 0.9957240375697249,
+            "classification_report": {
+                "NORMAL": {
+                    "precision": 1.0,
+                    "recall": 0.9951262738147985,
+                    "f1-score": 0.9975571840994892,
+                    "support": 2257.0
+                },
+                "OVERHEATING": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 75.0
+                },
+                "OVERLOAD": {
+                    "precision": 0.8888888888888888,
+                    "recall": 1.0,
+                    "f1-score": 0.9411764705882353,
+                    "support": 88.0
+                },
+                "SPEED_ANOMALY": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 80.0
+                },
+                "accuracy": 0.9956,
+                "macro avg": {
+                    "precision": 0.9722222222222222,
+                    "recall": 0.9987815684536996,
+                    "f1-score": 0.9846834136719311,
+                    "support": 2500.0
+                },
+                "weighted avg": {
+                    "precision": 0.9960888888888889,
+                    "recall": 0.9956,
+                    "f1-score": 0.9957240375697249,
+                    "support": 2500.0
+                }
+            }
+        }
+    ],
+    "limitations": [
+        "Stress conditions are synthetically generated.",
+        "Original labels are retained even when fault signals are weakened.",
+        "Overlapping faults retain a single original label.",
+        "Drift is applied in row order and is not a physical drift model.",
+        "Results do not establish real-world industrial robustness."
+    ]
+}

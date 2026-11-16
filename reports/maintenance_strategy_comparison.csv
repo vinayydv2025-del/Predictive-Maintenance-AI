@@ -1,0 +1,5 @@
+strategy,makespan_hours,average_waiting_hours,critical_machine_average_waiting_hours,technician_utilization_percentage,total_estimated_downtime_hours,total_estimated_cost_simulation_units
+PRIORITY_FIRST,12.5,5.21,0.0,100.0,25.0,2870.0
+SHORTEST_PROCESSING_TIME,15.0,2.5,7.0,83.33,25.0,2870.0
+SEVERITY_FIRST,12.5,5.21,0.0,100.0,25.0,2870.0
+FIFO,12.5,5.21,0.0,100.0,25.0,2870.0

@@ -1,0 +1,139 @@
+[
+    {
+        "scenario": "NORMAL",
+        "expected": "No injected equipment fault",
+        "diagnosis": "NORMAL_OPERATION",
+        "severity": "NORMAL",
+        "detected_faults": [],
+        "diagnostic_reliability": "NO_ALERT",
+        "maintenance_action": "CONTINUE_ROUTINE_MONITORING",
+        "xgboost": "NO_FAILURE_ALERT",
+        "anomaly_detector": "NORMAL",
+        "legacy_classifier": "NORMAL",
+        "multilabel_fault_count": 0,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 0
+    },
+    {
+        "scenario": "OVERHEATING",
+        "expected": "Overheating fault",
+        "diagnosis": "OVERHEATING",
+        "severity": "WARNING",
+        "detected_faults": [
+            "OVERHEATING"
+        ],
+        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+        "maintenance_action": "INVESTIGATE_EQUIPMENT",
+        "xgboost": "NO_FAILURE_ALERT",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "OVERHEATING",
+        "multilabel_fault_count": 1,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 2
+    },
+    {
+        "scenario": "OVERLOAD",
+        "expected": "Overload fault",
+        "diagnosis": "OVERLOAD",
+        "severity": "WARNING",
+        "detected_faults": [
+            "OVERLOAD"
+        ],
+        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+        "maintenance_action": "INVESTIGATE_EQUIPMENT",
+        "xgboost": "NO_FAILURE_ALERT",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "OVERLOAD",
+        "multilabel_fault_count": 1,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 2
+    },
+    {
+        "scenario": "SPEED_ANOMALY",
+        "expected": "Speed anomaly fault",
+        "diagnosis": "SPEED_ANOMALY",
+        "severity": "WARNING",
+        "detected_faults": [
+            "SPEED_ANOMALY"
+        ],
+        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+        "maintenance_action": "INVESTIGATE_EQUIPMENT",
+        "xgboost": "NO_FAILURE_ALERT",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "SPEED_ANOMALY",
+        "multilabel_fault_count": 1,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 2
+    },
+    {
+        "scenario": "DOUBLE_FAULT",
+        "expected": "Overheating and overload",
+        "diagnosis": "MULTIPLE_FAULTS",
+        "severity": "HIGH",
+        "detected_faults": [
+            "OVERHEATING",
+            "OVERLOAD"
+        ],
+        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+        "maintenance_action": "INVESTIGATE_EQUIPMENT",
+        "xgboost": "FAILURE_RISK",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "OVERHEATING",
+        "multilabel_fault_count": 2,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 3
+    },
+    {
+        "scenario": "TRIPLE_FAULT",
+        "expected": "All three equipment faults",
+        "diagnosis": "MULTIPLE_FAULTS",
+        "severity": "CRITICAL",
+        "detected_faults": [
+            "OVERHEATING",
+            "OVERLOAD",
+            "SPEED_ANOMALY"
+        ],
+        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+        "maintenance_action": "INVESTIGATE_EQUIPMENT",
+        "xgboost": "FAILURE_RISK",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "OVERHEATING",
+        "multilabel_fault_count": 3,
+        "sensor_quality": "NOT_ASSESSED",
+        "supporting_alert_count": 3
+    },
+    {
+        "scenario": "SEVERE_SENSOR_NOISE",
+        "expected": "Sensor quality issue without injected equipment fault",
+        "diagnosis": "SENSOR_QUALITY_WARNING",
+        "severity": "WARNING",
+        "detected_faults": [],
+        "diagnostic_reliability": "COMPROMISED",
+        "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+        "xgboost": "NO_FAILURE_ALERT",
+        "anomaly_detector": "NORMAL",
+        "legacy_classifier": "NORMAL",
+        "multilabel_fault_count": 0,
+        "sensor_quality": "SENSOR_QUALITY_WARNING",
+        "supporting_alert_count": 0
+    },
+    {
+        "scenario": "TRIPLE_FAULT_WITH_SENSOR_ISSUE",
+        "expected": "Three equipment faults with a sensor-quality warning",
+        "diagnosis": "MULTIPLE_FAULTS",
+        "severity": "CRITICAL",
+        "detected_faults": [
+            "OVERHEATING",
+            "OVERLOAD",
+            "SPEED_ANOMALY"
+        ],
+        "diagnostic_reliability": "COMPROMISED",
+        "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+        "xgboost": "FAILURE_RISK",
+        "anomaly_detector": "ANOMALY",
+        "legacy_classifier": "OVERHEATING",
+        "multilabel_fault_count": 3,
+        "sensor_quality": "SENSOR_QUALITY_WARNING",
+        "supporting_alert_count": 3
+    }
+]

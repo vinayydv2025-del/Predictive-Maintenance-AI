@@ -305,7 +305,80 @@ def simulate_heuristic(jobs, strategy):
 # OR-TOOLS CP-SAT OPTIMIZER
 # ---------------------------------------------------------
 
-def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
+def select_warm_start(jobs):
+    """
+    Select the best feasible heuristic schedule using the same
+    objective ordering as the CP-SAT optimizer:
+
+    1. Lowest total critical-job completion time
+    2. Lowest makespan
+    3. Lowest total completion time
+
+    Returns:
+        best_strategy: Name of the selected heuristic.
+        schedule_by_order: Schedule indexed by original_order.
+    """
+
+    candidates = []
+
+    for strategy in STRATEGIES:
+        result = simulate_heuristic(jobs, strategy)
+        scheduled = result["scheduled_work_orders"]
+
+        critical_completion = sum(
+            job["finish_units"]
+            for job in scheduled
+            if job["severity"] == "CRITICAL"
+        )
+
+        makespan = max(
+            (job["finish_units"] for job in scheduled),
+            default=0,
+        )
+
+        total_completion = sum(
+            job["finish_units"]
+            for job in scheduled
+        )
+
+        objective_key = (
+            critical_completion,
+            makespan,
+            total_completion,
+        )
+
+        candidates.append(
+            (objective_key, strategy, scheduled)
+        )
+
+    _, best_strategy, best_schedule = min(
+        candidates,
+        key=lambda item: item[0],
+    )
+
+    schedule_by_order = {
+        job["original_order"]: job
+        for job in best_schedule
+    }
+
+    expected_orders = {
+        job["original_order"]
+        for job in jobs
+    }
+
+    if set(schedule_by_order) != expected_orders:
+        raise ValueError(
+            "Warm-start schedule does not cover every work order."
+        )
+
+    return best_strategy, schedule_by_order
+
+
+def optimize_with_ortools(
+    jobs,
+    time_limit=SOLVER_TIME_LIMIT_SECONDS,
+    use_warm_start=True,
+):
     model = cp_model.CpModel()
 
     number_of_jobs = len(jobs)
@@ -319,6 +392,7 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
     starts = []
     ends = []
     technician_choices = []
+
     technician_intervals = [
         [] for _ in range(number_of_technicians)
     ]
@@ -361,7 +435,6 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
 
             choices.append(selected)
 
-        # Every work order must be assigned to exactly one technician.
         model.AddExactlyOne(choices)
 
         starts.append(start)
@@ -400,9 +473,6 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
     # 1. Minimize critical-machine completion times.
     # 2. Minimize overall makespan.
     # 3. Minimize total completion time.
-    #
-    # The weights are chosen so a lower-priority objective
-    # cannot outweigh a one-unit improvement in a higher one.
 
     lower_bound_weight = (
         number_of_jobs * horizon + 1
@@ -421,6 +491,75 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
     )
 
     model.Minimize(objective)
+
+    # -----------------------------------------------------
+    # WARM START: ADD THE BEST HEURISTIC SCHEDULE AS HINTS
+    # -----------------------------------------------------
+
+    warm_start_strategy = None
+
+    if use_warm_start:
+        (
+            warm_start_strategy,
+            warm_schedule,
+        ) = select_warm_start(jobs)
+
+        technician_ids = [
+            f"TECHNICIAN-{index + 1:02d}"
+            for index in range(number_of_technicians)
+        ]
+
+        for job_index, job in enumerate(jobs):
+            original_order = job["original_order"]
+            suggested = warm_schedule[original_order]
+
+            suggested_technician = (
+                suggested["assigned_technician"]
+            )
+
+            if suggested_technician not in technician_ids:
+                raise ValueError(
+                    "Invalid technician in warm-start schedule: "
+                    f"{suggested_technician}"
+                )
+
+            model.AddHint(
+                starts[job_index],
+                int(suggested["start_units"]),
+            )
+
+            model.AddHint(
+                ends[job_index],
+                int(suggested["finish_units"]),
+            )
+
+            for technician_index, choice in enumerate(
+                technician_choices[job_index]
+            ):
+                model.AddHint(
+                    choice,
+                    int(
+                        technician_ids[technician_index]
+                        == suggested_technician
+                    ),
+                )
+
+        suggested_makespan = max(
+            (
+                job["finish_units"]
+                for job in warm_schedule.values()
+            ),
+            default=0,
+        )
+
+        model.AddHint(
+            makespan,
+            int(suggested_makespan),
+        )
+
+    # -----------------------------------------------------
+    # SOLVE
+    # -----------------------------------------------------
 
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit
@@ -471,17 +610,22 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
         technician = technicians[selected_technician]
 
         technician["busy_units"] += job["duration_units"]
+
         technician["available_units"] = max(
             technician["available_units"],
             finish,
         )
+
         technician["machines"].append(job["machine_id"])
+
+        job = deepcopy(job)
 
         job["start_units"] = start
         job["finish_units"] = finish
         job["start_hour"] = round(start / TIME_SCALE, 2)
         job["finish_hour"] = round(finish / TIME_SCALE, 2)
         job["waiting_hours"] = job["start_hour"]
+
         job["assigned_technician"] = (
             technician["technician_id"]
         )
@@ -505,6 +649,7 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
     result["solver_status"] = solver.StatusName(status)
     result["solver_objective_value"] = solver.ObjectiveValue()
     result["solver_best_bound"] = solver.BestObjectiveBound()
+
     result["solver_wall_time_seconds"] = round(
         solver.WallTime(),
         4,
@@ -514,7 +659,12 @@ def optimize_with_ortools(jobs, time_limit=SOLVER_TIME_LIMIT_SECONDS):
         status == cp_model.OPTIMAL
     )
 
+    result["warm_start_enabled"] = use_warm_start
+    result["warm_start_hints_added"] = use_warm_start
+    result["warm_start_strategy"] = warm_start_strategy
+
     return result
+
 
 
 # ---------------------------------------------------------
@@ -841,6 +991,8 @@ def export_csv(experiment_results):
         "solver_status",
         "optimality_proven",
         "solver_wall_time_seconds",
+        "warm_start_enabled",
+        "warm_start_strategy",
     ]
 
     with OUTPUT_CSV.open(
@@ -931,6 +1083,17 @@ def main():
         ),
         "validation": validation,
         "scenario_results": experiments,
+        "warm_start": {
+            "enabled": True,
+            "method": "BEST_HEURISTIC_SCHEDULE_AS_CP_SAT_HINTS",
+            "selection_objective": (
+            "CRITICAL_COMPLETION_THEN_MAKESPAN_THEN_TOTAL_COMPLETION"
+            ),
+        "note": (
+            "The heuristic schedule is supplied as a solver hint. "
+            "CP-SAT remains free to improve the schedule."
+        ),
+    },
     }
 
     OUTPUT_JSON.parent.mkdir(

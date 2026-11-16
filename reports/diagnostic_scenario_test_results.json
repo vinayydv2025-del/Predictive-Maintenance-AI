@@ -1,0 +1,441 @@
+{
+    "total_scenarios": 6,
+    "evaluated_scenarios": 5,
+    "passed": 5,
+    "check_required": 0,
+    "observation_only": 1,
+    "pass_rate": 1.0,
+    "results": [
+        {
+            "scenario": "NORMAL_OPERATION",
+            "xgboost_prediction": "NO_FAILURE_ALERT",
+            "anomaly_prediction": "NORMAL",
+            "fault_classification": "NORMAL",
+            "final_diagnosis": "NORMAL_OPERATION",
+            "severity": "NORMAL",
+            "supporting_alert_count": 0,
+            "test_status": "PASS",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.509398+00:00",
+                "machine_id": "TEST-NORMAL",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-NORMAL",
+                    "machine_type": "M",
+                    "air_temperature": 300.0,
+                    "process_temperature": 310.0,
+                    "rotational_speed": 1500.0,
+                    "torque": 40.0,
+                    "tool_wear": 200.0,
+                    "operating_hours": 250.0
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.001787,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "NO_FAILURE_ALERT"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.511853,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "NORMAL",
+                        "is_anomaly": false
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "NORMAL",
+                        "classification_confidence": 0.993333,
+                        "class_probabilities": {
+                            "NORMAL": 0.993333,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.0,
+                            "SPEED_ANOMALY": 0.006667
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "NORMAL_OPERATION",
+                    "severity": "NORMAL",
+                    "supporting_alert_count": 0,
+                    "recommended_actions": [
+                        "Continue routine monitoring.",
+                        "Follow the scheduled maintenance plan."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        },
+        {
+            "scenario": "OVERHEATING",
+            "xgboost_prediction": "NO_FAILURE_ALERT",
+            "anomaly_prediction": "ANOMALY",
+            "fault_classification": "OVERHEATING",
+            "final_diagnosis": "OVERHEATING",
+            "severity": "WARNING",
+            "supporting_alert_count": 1,
+            "test_status": "PASS",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.610020+00:00",
+                "machine_id": "TEST-OVERHEATING",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-OVERHEATING",
+                    "machine_type": "M",
+                    "air_temperature": 317.12,
+                    "process_temperature": 330.12,
+                    "rotational_speed": 1500.0,
+                    "torque": 40.0,
+                    "tool_wear": 200.0,
+                    "operating_hours": 250.0,
+                    "is_anomaly": true,
+                    "anomaly_type": "OVERHEATING"
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.042556,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "NO_FAILURE_ALERT"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.675719,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "ANOMALY",
+                        "is_anomaly": true
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "classification_confidence": 0.988308,
+                        "class_probabilities": {
+                            "NORMAL": 0.011692,
+                            "OVERHEATING": 0.988308,
+                            "OVERLOAD": 0.0,
+                            "SPEED_ANOMALY": 0.0
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "OVERHEATING",
+                    "severity": "WARNING",
+                    "supporting_alert_count": 1,
+                    "recommended_actions": [
+                        "Inspect cooling system.",
+                        "Check temperature sensors.",
+                        "Inspect ventilation and lubrication."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        },
+        {
+            "scenario": "OVERLOAD",
+            "xgboost_prediction": "NO_FAILURE_ALERT",
+            "anomaly_prediction": "ANOMALY",
+            "fault_classification": "OVERLOAD",
+            "final_diagnosis": "OVERLOAD",
+            "severity": "WARNING",
+            "supporting_alert_count": 1,
+            "test_status": "PASS",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.698549+00:00",
+                "machine_id": "TEST-OVERLOAD",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-OVERLOAD",
+                    "machine_type": "M",
+                    "air_temperature": 300.0,
+                    "process_temperature": 310.0,
+                    "rotational_speed": 1500.0,
+                    "torque": 60.38,
+                    "tool_wear": 200.0,
+                    "operating_hours": 250.0,
+                    "is_anomaly": true,
+                    "anomaly_type": "OVERLOAD"
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.167466,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "NO_FAILURE_ALERT"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.536607,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "ANOMALY",
+                        "is_anomaly": true
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERLOAD",
+                        "classification_confidence": 0.850957,
+                        "class_probabilities": {
+                            "NORMAL": 0.130426,
+                            "OVERHEATING": 0.004262,
+                            "OVERLOAD": 0.850957,
+                            "SPEED_ANOMALY": 0.014356
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "OVERLOAD",
+                    "severity": "WARNING",
+                    "supporting_alert_count": 1,
+                    "recommended_actions": [
+                        "Inspect mechanical load.",
+                        "Check motor torque demand.",
+                        "Inspect bearings and transmission."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        },
+        {
+            "scenario": "SPEED_ANOMALY",
+            "xgboost_prediction": "NO_FAILURE_ALERT",
+            "anomaly_prediction": "ANOMALY",
+            "fault_classification": "SPEED_ANOMALY",
+            "final_diagnosis": "SPEED_ANOMALY",
+            "severity": "WARNING",
+            "supporting_alert_count": 1,
+            "test_status": "PASS",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.796940+00:00",
+                "machine_id": "TEST-SPEED-ANOMALY",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-SPEED-ANOMALY",
+                    "machine_type": "M",
+                    "air_temperature": 300.0,
+                    "process_temperature": 310.0,
+                    "rotational_speed": 1194.99,
+                    "torque": 40.0,
+                    "tool_wear": 200.0,
+                    "operating_hours": 250.0,
+                    "is_anomaly": true,
+                    "anomaly_type": "SPEED_ANOMALY"
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.010761,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "NO_FAILURE_ALERT"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.595253,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "ANOMALY",
+                        "is_anomaly": true
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "SPEED_ANOMALY",
+                        "classification_confidence": 0.947954,
+                        "class_probabilities": {
+                            "NORMAL": 0.0425,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.009546,
+                            "SPEED_ANOMALY": 0.947954
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "SPEED_ANOMALY",
+                    "severity": "WARNING",
+                    "supporting_alert_count": 1,
+                    "recommended_actions": [
+                        "Inspect motor speed control.",
+                        "Check drive and speed sensors.",
+                        "Investigate abnormal rotational behaviour."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        },
+        {
+            "scenario": "OVERLAPPING_FAULT_SIGNALS",
+            "xgboost_prediction": "FAILURE_RISK",
+            "anomaly_prediction": "ANOMALY",
+            "fault_classification": "OVERHEATING",
+            "final_diagnosis": "OVERHEATING",
+            "severity": "HIGH",
+            "supporting_alert_count": 2,
+            "test_status": "PASS",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.892935+00:00",
+                "machine_id": "TEST-OVERLAPPING",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-OVERLAPPING",
+                    "machine_type": "M",
+                    "air_temperature": 315.0,
+                    "process_temperature": 330.0,
+                    "rotational_speed": 1250.0,
+                    "torque": 65.0,
+                    "tool_wear": 200.0,
+                    "operating_hours": 250.0
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.99256,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "FAILURE_RISK"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.691125,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "ANOMALY",
+                        "is_anomaly": true
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "classification_confidence": 0.699322,
+                        "class_probabilities": {
+                            "NORMAL": 0.017735,
+                            "OVERHEATING": 0.699322,
+                            "OVERLOAD": 0.056761,
+                            "SPEED_ANOMALY": 0.226182
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "OVERHEATING",
+                    "severity": "HIGH",
+                    "supporting_alert_count": 2,
+                    "recommended_actions": [
+                        "Inspect cooling system.",
+                        "Check temperature sensors.",
+                        "Inspect ventilation and lubrication."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        },
+        {
+            "scenario": "SEVERE_SENSOR_NOISE",
+            "xgboost_prediction": "NO_FAILURE_ALERT",
+            "anomaly_prediction": "ANOMALY",
+            "fault_classification": "NORMAL",
+            "final_diagnosis": "UNCLASSIFIED_ANOMALY",
+            "severity": "WARNING",
+            "supporting_alert_count": 1,
+            "test_status": "OBSERVATION_ONLY",
+            "full_diagnosis": {
+                "timestamp": "2026-11-16T09:02:13.991261+00:00",
+                "machine_id": "TEST-SEVERE-NOISE",
+                "machine_type": "M",
+                "input_readings": {
+                    "machine_id": "TEST-SEVERE-NOISE",
+                    "machine_type": "M",
+                    "air_temperature": 300.6399058674843,
+                    "process_temperature": 307.81603337689495,
+                    "rotational_speed": 1556.2838396854843,
+                    "torque": 45.64338829834728,
+                    "tool_wear": 194.1468944340385,
+                    "operating_hours": 249.6093461479413
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "failure_probability": 0.00548,
+                        "decision_threshold": 0.8260806798934937,
+                        "prediction": "NO_FAILURE_ALERT"
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "anomaly_score": 0.528951,
+                        "decision_threshold": 0.5277330144334736,
+                        "prediction": "ANOMALY",
+                        "is_anomaly": true
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "NORMAL",
+                        "classification_confidence": 0.995938,
+                        "class_probabilities": {
+                            "NORMAL": 0.995938,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.004063,
+                            "SPEED_ANOMALY": 0.0
+                        }
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "UNCLASSIFIED_ANOMALY",
+                    "severity": "WARNING",
+                    "supporting_alert_count": 1,
+                    "recommended_actions": [
+                        "Inspect sensor readings.",
+                        "Collect additional operating observations.",
+                        "Perform engineering investigation."
+                    ]
+                },
+                "limitations": [
+                    "XGBoost failure probability is based on AI4I training data.",
+                    "Anomaly and fault classification are based on synthetic simulator data.",
+                    "The combined diagnosis is a rule-based synthesis, not a separately calibrated probability.",
+                    "Recommendations require human engineering review."
+                ]
+            }
+        }
+    ],
+    "limitations": [
+        "Fault scenarios are synthetically generated.",
+        "Severe sensor noise is an observation-only test.",
+        "Passing these tests does not establish real-world industrial validity.",
+        "XGBoost and simulator models use different training domains."
+    ]
+}

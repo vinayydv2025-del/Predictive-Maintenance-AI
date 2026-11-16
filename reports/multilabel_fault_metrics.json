@@ -1,0 +1,182 @@
+{
+    "model": "Multi-label Random Forest",
+    "dataset": "Synthetic multi-label industrial fault dataset",
+    "evaluation_design": "Machine-held-out",
+    "training_machines": [
+        "MACHINE-001",
+        "MACHINE-004",
+        "MACHINE-006",
+        "MACHINE-007",
+        "MACHINE-008",
+        "MACHINE-010",
+        "MACHINE-011",
+        "MACHINE-013",
+        "MACHINE-015",
+        "MACHINE-016",
+        "MACHINE-017",
+        "MACHINE-020"
+    ],
+    "calibration_machines": [
+        "MACHINE-003",
+        "MACHINE-012",
+        "MACHINE-019"
+    ],
+    "test_machines": [
+        "MACHINE-002",
+        "MACHINE-005",
+        "MACHINE-009",
+        "MACHINE-014",
+        "MACHINE-018"
+    ],
+    "training_rows": 43224,
+    "calibration_rows": 10688,
+    "test_rows": 18056,
+    "targets": [
+        "fault_overheating",
+        "fault_overload",
+        "fault_speed_anomaly"
+    ],
+    "calibration": {
+        "fault_overheating": {
+            "threshold": 0.36499999999999994,
+            "calibration_f1": 1.0
+        },
+        "fault_overload": {
+            "threshold": 0.7799999999999999,
+            "calibration_f1": 0.9998128392288976
+        },
+        "fault_speed_anomaly": {
+            "threshold": 0.05,
+            "calibration_f1": 1.0
+        }
+    },
+    "overall_test_metrics": {
+        "precision_micro": 0.9996309009707305,
+        "recall_micro": 0.9999630778319303,
+        "f1_micro": 0.9997969618103624,
+        "precision_macro": 0.9996310153458463,
+        "recall_macro": 0.9999630778319303,
+        "f1_macro": 0.9997969945088077,
+        "exact_match_accuracy": 0.9993907842268498,
+        "hamming_loss": 0.0002030719243833998
+    },
+    "per_fault_test_metrics": {
+        "fault_overheating": {
+            "precision": 0.9998892457636505,
+            "recall": 1.0,
+            "f1": 0.9999446198150301,
+            "threshold": 0.36499999999999994,
+            "positive_test_examples": 9028,
+            "predicted_positive_examples": 9029
+        },
+        "fault_overload": {
+            "precision": 0.999114554510238,
+            "recall": 0.9998892334957908,
+            "f1": 0.9995017438963627,
+            "threshold": 0.7799999999999999,
+            "positive_test_examples": 9028,
+            "predicted_positive_examples": 9035
+        },
+        "fault_speed_anomaly": {
+            "precision": 0.9998892457636505,
+            "recall": 1.0,
+            "f1": 0.9999446198150301,
+            "threshold": 0.05,
+            "positive_test_examples": 9028,
+            "predicted_positive_examples": 9029
+        }
+    },
+    "confusion_matrices": {
+        "fault_overheating": {
+            "true_negative": 9027,
+            "false_positive": 1,
+            "false_negative": 0,
+            "true_positive": 9028
+        },
+        "fault_overload": {
+            "true_negative": 9020,
+            "false_positive": 8,
+            "false_negative": 1,
+            "true_positive": 9027
+        },
+        "fault_speed_anomaly": {
+            "true_negative": 9027,
+            "false_positive": 1,
+            "false_negative": 0,
+            "true_positive": 9028
+        }
+    },
+    "scenario_test_metrics": {
+        "DOUBLE_FAULT": {
+            "observations": 6771,
+            "exact_match_accuracy": 0.9997046226554424,
+            "f1_macro": 0.9999261720191953
+        },
+        "NORMAL": {
+            "observations": 2257,
+            "exact_match_accuracy": 0.998227735932654,
+            "f1_macro": 0.0
+        },
+        "SINGLE_FAULT": {
+            "observations": 6771,
+            "exact_match_accuracy": 0.9992615566386058,
+            "f1_macro": 0.9996309254883421
+        },
+        "TRIPLE_FAULT": {
+            "observations": 2257,
+            "exact_match_accuracy": 1.0,
+            "f1_macro": 1.0
+        }
+    },
+    "classification_report": {
+        "fault_overheating": {
+            "precision": 0.9998892457636505,
+            "recall": 1.0,
+            "f1-score": 0.9999446198150301,
+            "support": 9028.0
+        },
+        "fault_overload": {
+            "precision": 0.999114554510238,
+            "recall": 0.9998892334957908,
+            "f1-score": 0.9995017438963627,
+            "support": 9028.0
+        },
+        "fault_speed_anomaly": {
+            "precision": 0.9998892457636505,
+            "recall": 1.0,
+            "f1-score": 0.9999446198150301,
+            "support": 9028.0
+        },
+        "micro avg": {
+            "precision": 0.9996309009707305,
+            "recall": 0.9999630778319303,
+            "f1-score": 0.9997969618103624,
+            "support": 27084.0
+        },
+        "macro avg": {
+            "precision": 0.9996310153458463,
+            "recall": 0.9999630778319303,
+            "f1-score": 0.9997969945088077,
+            "support": 27084.0
+        },
+        "weighted avg": {
+            "precision": 0.9996310153458463,
+            "recall": 0.9999630778319303,
+            "f1-score": 0.9997969945088075,
+            "support": 27084.0
+        },
+        "samples avg": {
+            "precision": 0.8747969280756165,
+            "recall": 0.8749446167478955,
+            "f1-score": 0.8748486191109142,
+            "support": 27084.0
+        }
+    },
+    "limitations": [
+        "Fault labels are generated by controlled synthetic injection.",
+        "All eight variants of each source observation share its machine and cycle.",
+        "Machine-held-out testing prevents machine overlap but does not prove real-world generalization.",
+        "Probability thresholds are calibrated on only three synthetic machines.",
+        "Random Forest probabilities are not guaranteed to be calibrated probabilities."
+    ]
+}

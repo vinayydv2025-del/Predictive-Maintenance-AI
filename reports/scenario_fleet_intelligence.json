@@ -1,0 +1,1873 @@
+{
+    "report_generated_at": "2026-11-16T19:58:47.586940+00:00",
+    "platform": "SCENARIO_DRIVEN_FLEET_INTELLIGENCE",
+    "experiment_metadata": {
+        "data_source": "SYNTHETIC_INDUSTRIAL_DIGITAL_TWIN",
+        "real_world_validation": false,
+        "number_of_machines": 8,
+        "simulation_cycles": 100,
+        "random_seed": 42,
+        "scenario_count": 8,
+        "fault_injection_enabled": true,
+        "sensor_noise_experiments_enabled": true
+    },
+    "scenario_results": [
+        {
+            "machine_id": "MACHINE-001",
+            "scenario": "NORMAL_OPERATION",
+            "injected_faults": [],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": false,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:39.770622+00:00",
+                "machine_id": "MACHINE-001",
+                "machine_type": "M",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-001",
+                    "machine_type": "M",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 90.63,
+                    "tool_wear": 51.89,
+                    "air_temperature": 298.4,
+                    "process_temperature": 308.57,
+                    "rotational_speed": 1477.84,
+                    "torque": 41.62,
+                    "status": "NORMAL",
+                    "is_anomaly": false,
+                    "anomaly_type": null,
+                    "fault_types": [],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "NO_FAILURE_ALERT",
+                        "failure_score": 0.000444,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "NORMAL",
+                        "anomaly_score": 0.407477,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "NORMAL",
+                        "class_scores": {
+                            "NORMAL": 1.0,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.0,
+                            "SPEED_ANOMALY": 0.0
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [],
+                        "fault_count": 0,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 0.0,
+                                "threshold": 0.365,
+                                "detected": false
+                            },
+                            "OVERLOAD": {
+                                "score": 0.0,
+                                "threshold": 0.78,
+                                "detected": false
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.0,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "NORMAL_OPERATION",
+                    "severity": "NORMAL",
+                    "severity_reason": "No equipment fault or risk alert was raised.",
+                    "detected_faults": [],
+                    "supporting_alert_count": 0,
+                    "evidence": {
+                        "xgboost_failure_alert": false,
+                        "isolation_forest_anomaly": false,
+                        "multilabel_fault_count": 0,
+                        "legacy_classifier_prediction": "NORMAL",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Continue routine monitoring and scheduled maintenance."
+                    ],
+                    "diagnostic_reliability": "NO_ALERT",
+                    "maintenance_action": "CONTINUE_ROUTINE_MONITORING",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "NORMAL_OPERATION",
+                "severity": "NORMAL",
+                "severity_reason": "No equipment fault or risk alert was raised.",
+                "detected_faults": [],
+                "supporting_alert_count": 0,
+                "evidence": {
+                    "xgboost_failure_alert": false,
+                    "isolation_forest_anomaly": false,
+                    "multilabel_fault_count": 0,
+                    "legacy_classifier_prediction": "NORMAL",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Continue routine monitoring and scheduled maintenance."
+                ],
+                "diagnostic_reliability": "NO_ALERT",
+                "maintenance_action": "CONTINUE_ROUTINE_MONITORING",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "NORMAL_OPERATION",
+            "severity": "NORMAL",
+            "severity_reason": "No equipment fault or risk alert was raised.",
+            "detected_faults": [],
+            "supporting_alert_count": 0,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "NO_ALERT",
+            "maintenance_action": "CONTINUE_ROUTINE_MONITORING",
+            "recommendations": [
+                "Continue routine monitoring and scheduled maintenance."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-002",
+            "scenario": "OVERHEATING",
+            "injected_faults": [
+                "OVERHEATING"
+            ],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:40.887688+00:00",
+                "machine_id": "MACHINE-002",
+                "machine_type": "L",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-002",
+                    "machine_type": "L",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 94.49,
+                    "tool_wear": 50.13,
+                    "air_temperature": 314.86,
+                    "process_temperature": 328.82,
+                    "rotational_speed": 1493.58,
+                    "torque": 38.03,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "OVERHEATING",
+                    "fault_types": [
+                        "OVERHEATING"
+                    ],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "NO_FAILURE_ALERT",
+                        "failure_score": 0.003842,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "ANOMALY",
+                        "anomaly_score": 0.652483,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "class_scores": {
+                            "NORMAL": 0.0025,
+                            "OVERHEATING": 0.9975,
+                            "OVERLOAD": 0.0,
+                            "SPEED_ANOMALY": 0.0
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "OVERHEATING"
+                        ],
+                        "fault_count": 1,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 1.0,
+                                "threshold": 0.365,
+                                "detected": true
+                            },
+                            "OVERLOAD": {
+                                "score": 0.0,
+                                "threshold": 0.78,
+                                "detected": false
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.0012,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "OVERHEATING",
+                    "severity": "WARNING",
+                    "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                    "detected_faults": [
+                        "OVERHEATING"
+                    ],
+                    "supporting_alert_count": 2,
+                    "evidence": {
+                        "xgboost_failure_alert": false,
+                        "isolation_forest_anomaly": true,
+                        "multilabel_fault_count": 1,
+                        "legacy_classifier_prediction": "OVERHEATING",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Inspect cooling and ventilation systems.",
+                        "Check temperature sensors and thermal operating conditions."
+                    ],
+                    "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                    "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "OVERHEATING",
+                "severity": "WARNING",
+                "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                "detected_faults": [
+                    "OVERHEATING"
+                ],
+                "supporting_alert_count": 2,
+                "evidence": {
+                    "xgboost_failure_alert": false,
+                    "isolation_forest_anomaly": true,
+                    "multilabel_fault_count": 1,
+                    "legacy_classifier_prediction": "OVERHEATING",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Inspect cooling and ventilation systems.",
+                    "Check temperature sensors and thermal operating conditions."
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "OVERHEATING",
+            "severity": "WARNING",
+            "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+            "detected_faults": [
+                "OVERHEATING"
+            ],
+            "supporting_alert_count": 2,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INVESTIGATE_EQUIPMENT",
+            "recommendations": [
+                "Inspect cooling and ventilation systems.",
+                "Check temperature sensors and thermal operating conditions."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-003",
+            "scenario": "OVERLOAD",
+            "injected_faults": [
+                "OVERLOAD"
+            ],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:41.971795+00:00",
+                "machine_id": "MACHINE-003",
+                "machine_type": "H",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-003",
+                    "machine_type": "H",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 85.77,
+                    "tool_wear": 47.26,
+                    "air_temperature": 299.46,
+                    "process_temperature": 309.51,
+                    "rotational_speed": 1481.71,
+                    "torque": 63.99,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "OVERLOAD",
+                    "fault_types": [
+                        "OVERLOAD"
+                    ],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "NO_FAILURE_ALERT",
+                        "failure_score": 0.514275,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "NORMAL",
+                        "anomaly_score": 0.504831,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERLOAD",
+                        "class_scores": {
+                            "NORMAL": 0.03294,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.96706,
+                            "SPEED_ANOMALY": 0.0
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "OVERLOAD"
+                        ],
+                        "fault_count": 1,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 0.0,
+                                "threshold": 0.365,
+                                "detected": false
+                            },
+                            "OVERLOAD": {
+                                "score": 1.0,
+                                "threshold": 0.78,
+                                "detected": true
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.0,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "OVERLOAD",
+                    "severity": "WARNING",
+                    "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                    "detected_faults": [
+                        "OVERLOAD"
+                    ],
+                    "supporting_alert_count": 1,
+                    "evidence": {
+                        "xgboost_failure_alert": false,
+                        "isolation_forest_anomaly": false,
+                        "multilabel_fault_count": 1,
+                        "legacy_classifier_prediction": "OVERLOAD",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Inspect mechanical load and torque conditions.",
+                        "Check for excessive friction or mechanical resistance."
+                    ],
+                    "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                    "maintenance_action": "INSPECT_EQUIPMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "OVERLOAD",
+                "severity": "WARNING",
+                "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                "detected_faults": [
+                    "OVERLOAD"
+                ],
+                "supporting_alert_count": 1,
+                "evidence": {
+                    "xgboost_failure_alert": false,
+                    "isolation_forest_anomaly": false,
+                    "multilabel_fault_count": 1,
+                    "legacy_classifier_prediction": "OVERLOAD",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Inspect mechanical load and torque conditions.",
+                    "Check for excessive friction or mechanical resistance."
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INSPECT_EQUIPMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "OVERLOAD",
+            "severity": "WARNING",
+            "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+            "detected_faults": [
+                "OVERLOAD"
+            ],
+            "supporting_alert_count": 1,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INSPECT_EQUIPMENT",
+            "recommendations": [
+                "Inspect mechanical load and torque conditions.",
+                "Check for excessive friction or mechanical resistance."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-004",
+            "scenario": "SPEED_ANOMALY",
+            "injected_faults": [
+                "SPEED_ANOMALY"
+            ],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:43.014102+00:00",
+                "machine_id": "MACHINE-004",
+                "machine_type": "M",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-004",
+                    "machine_type": "M",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 90.62,
+                    "tool_wear": 53.08,
+                    "air_temperature": 298.28,
+                    "process_temperature": 308.94,
+                    "rotational_speed": 1226.29,
+                    "torque": 43.3,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "SPEED_ANOMALY",
+                    "fault_types": [
+                        "SPEED_ANOMALY"
+                    ],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "NO_FAILURE_ALERT",
+                        "failure_score": 0.00066,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "NORMAL",
+                        "anomaly_score": 0.515885,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "SPEED_ANOMALY",
+                        "class_scores": {
+                            "NORMAL": 0.005,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.0,
+                            "SPEED_ANOMALY": 0.995
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "SPEED_ANOMALY"
+                        ],
+                        "fault_count": 1,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 0.0,
+                                "threshold": 0.365,
+                                "detected": false
+                            },
+                            "OVERLOAD": {
+                                "score": 0.0,
+                                "threshold": 0.78,
+                                "detected": false
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 1.0,
+                                "threshold": 0.05,
+                                "detected": true
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "SPEED_ANOMALY",
+                    "severity": "WARNING",
+                    "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                    "detected_faults": [
+                        "SPEED_ANOMALY"
+                    ],
+                    "supporting_alert_count": 1,
+                    "evidence": {
+                        "xgboost_failure_alert": false,
+                        "isolation_forest_anomaly": false,
+                        "multilabel_fault_count": 1,
+                        "legacy_classifier_prediction": "SPEED_ANOMALY",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Inspect the motor, drive system and rotational-speed sensor.",
+                        "Verify whether the operating speed is within its intended range."
+                    ],
+                    "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                    "maintenance_action": "INSPECT_EQUIPMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "SPEED_ANOMALY",
+                "severity": "WARNING",
+                "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+                "detected_faults": [
+                    "SPEED_ANOMALY"
+                ],
+                "supporting_alert_count": 1,
+                "evidence": {
+                    "xgboost_failure_alert": false,
+                    "isolation_forest_anomaly": false,
+                    "multilabel_fault_count": 1,
+                    "legacy_classifier_prediction": "SPEED_ANOMALY",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Inspect the motor, drive system and rotational-speed sensor.",
+                    "Verify whether the operating speed is within its intended range."
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INSPECT_EQUIPMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "SPEED_ANOMALY",
+            "severity": "WARNING",
+            "severity_reason": "At least one fault, sensor-quality or risk signal requires investigation.",
+            "detected_faults": [
+                "SPEED_ANOMALY"
+            ],
+            "supporting_alert_count": 1,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INSPECT_EQUIPMENT",
+            "recommendations": [
+                "Inspect the motor, drive system and rotational-speed sensor.",
+                "Verify whether the operating speed is within its intended range."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-005",
+            "scenario": "DOUBLE_FAULT",
+            "injected_faults": [
+                "OVERHEATING",
+                "OVERLOAD"
+            ],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:44.096212+00:00",
+                "machine_id": "MACHINE-005",
+                "machine_type": "L",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-005",
+                    "machine_type": "L",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 94.51,
+                    "tool_wear": 49.86,
+                    "air_temperature": 312.47,
+                    "process_temperature": 325.44,
+                    "rotational_speed": 1532.69,
+                    "torque": 72.55,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "MULTIPLE_FAULTS",
+                    "fault_types": [
+                        "OVERHEATING",
+                        "OVERLOAD"
+                    ],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "FAILURE_RISK",
+                        "failure_score": 0.979186,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "ANOMALY",
+                        "anomaly_score": 0.691005,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "class_scores": {
+                            "NORMAL": 0.057297,
+                            "OVERHEATING": 0.81299,
+                            "OVERLOAD": 0.116153,
+                            "SPEED_ANOMALY": 0.01356
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD"
+                        ],
+                        "fault_count": 2,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 1.0,
+                                "threshold": 0.365,
+                                "detected": true
+                            },
+                            "OVERLOAD": {
+                                "score": 0.996667,
+                                "threshold": 0.78,
+                                "detected": true
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.002,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "MULTIPLE_FAULTS",
+                    "severity": "HIGH",
+                    "severity_reason": "Multiple fault detections or corroborating model alerts.",
+                    "detected_faults": [
+                        "OVERHEATING",
+                        "OVERLOAD"
+                    ],
+                    "supporting_alert_count": 3,
+                    "evidence": {
+                        "xgboost_failure_alert": true,
+                        "isolation_forest_anomaly": true,
+                        "multilabel_fault_count": 2,
+                        "legacy_classifier_prediction": "OVERHEATING",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Inspect cooling and ventilation systems.",
+                        "Check temperature sensors and thermal operating conditions.",
+                        "Inspect mechanical load and torque conditions.",
+                        "Check for excessive friction or mechanical resistance.",
+                        "Review all detected fault signals together before authorizing maintenance."
+                    ],
+                    "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                    "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "HIGH",
+                "severity_reason": "Multiple fault detections or corroborating model alerts.",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "supporting_alert_count": 3,
+                "evidence": {
+                    "xgboost_failure_alert": true,
+                    "isolation_forest_anomaly": true,
+                    "multilabel_fault_count": 2,
+                    "legacy_classifier_prediction": "OVERHEATING",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Inspect cooling and ventilation systems.",
+                    "Check temperature sensors and thermal operating conditions.",
+                    "Inspect mechanical load and torque conditions.",
+                    "Check for excessive friction or mechanical resistance.",
+                    "Review all detected fault signals together before authorizing maintenance."
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "MULTIPLE_FAULTS",
+            "severity": "HIGH",
+            "severity_reason": "Multiple fault detections or corroborating model alerts.",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD"
+            ],
+            "supporting_alert_count": 3,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INVESTIGATE_EQUIPMENT",
+            "recommendations": [
+                "Inspect cooling and ventilation systems.",
+                "Check temperature sensors and thermal operating conditions.",
+                "Inspect mechanical load and torque conditions.",
+                "Check for excessive friction or mechanical resistance.",
+                "Review all detected fault signals together before authorizing maintenance."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-006",
+            "scenario": "TRIPLE_FAULT",
+            "injected_faults": [
+                "OVERHEATING",
+                "OVERLOAD",
+                "SPEED_ANOMALY"
+            ],
+            "injected_sensor_noise_multiplier": 0.0,
+            "injected_sensor_quality_issue": false,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:45.152660+00:00",
+                "machine_id": "MACHINE-006",
+                "machine_type": "H",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-006",
+                    "machine_type": "H",
+                    "cycle": 100,
+                    "operating_hours": 10.0,
+                    "health": 85.78,
+                    "tool_wear": 48.55,
+                    "air_temperature": 315.85,
+                    "process_temperature": 328.42,
+                    "rotational_speed": 1261.55,
+                    "torque": 76.03,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "MULTIPLE_FAULTS",
+                    "fault_types": [
+                        "OVERHEATING",
+                        "OVERLOAD",
+                        "SPEED_ANOMALY"
+                    ],
+                    "sensor_quality_issue": false
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "FAILURE_RISK",
+                        "failure_score": 0.98344,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "ANOMALY",
+                        "anomaly_score": 0.718293,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "class_scores": {
+                            "NORMAL": 0.016041,
+                            "OVERHEATING": 0.687279,
+                            "OVERLOAD": 0.066808,
+                            "SPEED_ANOMALY": 0.229872
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD",
+                            "SPEED_ANOMALY"
+                        ],
+                        "fault_count": 3,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 1.0,
+                                "threshold": 0.365,
+                                "detected": true
+                            },
+                            "OVERLOAD": {
+                                "score": 1.0,
+                                "threshold": 0.78,
+                                "detected": true
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 1.0,
+                                "threshold": 0.05,
+                                "detected": true
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "MULTIPLE_FAULTS",
+                    "severity": "CRITICAL",
+                    "severity_reason": "Three fault types detected with additional model evidence.",
+                    "detected_faults": [
+                        "OVERHEATING",
+                        "OVERLOAD",
+                        "SPEED_ANOMALY"
+                    ],
+                    "supporting_alert_count": 3,
+                    "evidence": {
+                        "xgboost_failure_alert": true,
+                        "isolation_forest_anomaly": true,
+                        "multilabel_fault_count": 3,
+                        "legacy_classifier_prediction": "OVERHEATING",
+                        "sensor_quality_warning": false
+                    },
+                    "sensor_quality": {
+                        "status": "NOT_ASSESSED",
+                        "known_simulation_flag": false,
+                        "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                    },
+                    "recommendations": [
+                        "Inspect cooling and ventilation systems.",
+                        "Check temperature sensors and thermal operating conditions.",
+                        "Inspect mechanical load and torque conditions.",
+                        "Check for excessive friction or mechanical resistance.",
+                        "Inspect the motor, drive system and rotational-speed sensor.",
+                        "Verify whether the operating speed is within its intended range.",
+                        "Review all detected fault signals together before authorizing maintenance."
+                    ],
+                    "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                    "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "CRITICAL",
+                "severity_reason": "Three fault types detected with additional model evidence.",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD",
+                    "SPEED_ANOMALY"
+                ],
+                "supporting_alert_count": 3,
+                "evidence": {
+                    "xgboost_failure_alert": true,
+                    "isolation_forest_anomaly": true,
+                    "multilabel_fault_count": 3,
+                    "legacy_classifier_prediction": "OVERHEATING",
+                    "sensor_quality_warning": false
+                },
+                "sensor_quality": {
+                    "status": "NOT_ASSESSED",
+                    "known_simulation_flag": false,
+                    "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+                },
+                "recommendations": [
+                    "Inspect cooling and ventilation systems.",
+                    "Check temperature sensors and thermal operating conditions.",
+                    "Inspect mechanical load and torque conditions.",
+                    "Check for excessive friction or mechanical resistance.",
+                    "Inspect the motor, drive system and rotational-speed sensor.",
+                    "Verify whether the operating speed is within its intended range.",
+                    "Review all detected fault signals together before authorizing maintenance."
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "MULTIPLE_FAULTS",
+            "severity": "CRITICAL",
+            "severity_reason": "Three fault types detected with additional model evidence.",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD",
+                "SPEED_ANOMALY"
+            ],
+            "supporting_alert_count": 3,
+            "sensor_quality": {
+                "status": "NOT_ASSESSED",
+                "known_simulation_flag": false,
+                "explanation": "Sensor quality was not independently assessed. Historical sensor readings are required for stronger noise and drift detection."
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INVESTIGATE_EQUIPMENT",
+            "recommendations": [
+                "Inspect cooling and ventilation systems.",
+                "Check temperature sensors and thermal operating conditions.",
+                "Inspect mechanical load and torque conditions.",
+                "Check for excessive friction or mechanical resistance.",
+                "Inspect the motor, drive system and rotational-speed sensor.",
+                "Verify whether the operating speed is within its intended range.",
+                "Review all detected fault signals together before authorizing maintenance."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-007",
+            "scenario": "SENSOR_NOISE_ONLY",
+            "injected_faults": [],
+            "injected_sensor_noise_multiplier": 4.0,
+            "injected_sensor_quality_issue": true,
+            "ground_truth_is_anomaly": false,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:46.394686+00:00",
+                "machine_id": "MACHINE-007",
+                "machine_type": "M",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-007",
+                    "machine_type": "M",
+                    "cycle": 100,
+                    "operating_hours": 10.0442,
+                    "health": 90.64,
+                    "tool_wear": 54.7165,
+                    "air_temperature": 297.9525,
+                    "process_temperature": 309.5245,
+                    "rotational_speed": 1550.9598,
+                    "torque": 50.0085,
+                    "status": "NORMAL",
+                    "is_anomaly": false,
+                    "anomaly_type": null,
+                    "fault_types": [],
+                    "sensor_quality_issue": true,
+                    "sensor_noise_multiplier": 4.0
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "NO_FAILURE_ALERT",
+                        "failure_score": 0.000487,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "NORMAL",
+                        "anomaly_score": 0.487913,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "NORMAL",
+                        "class_scores": {
+                            "NORMAL": 0.99567,
+                            "OVERHEATING": 0.0,
+                            "OVERLOAD": 0.00433,
+                            "SPEED_ANOMALY": 0.0
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [],
+                        "fault_count": 0,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 0.0,
+                                "threshold": 0.365,
+                                "detected": false
+                            },
+                            "OVERLOAD": {
+                                "score": 0.035943,
+                                "threshold": 0.78,
+                                "detected": false
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.000667,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "SENSOR_QUALITY_WARNING",
+                    "severity": "WARNING",
+                    "severity_reason": "Sensor quality issue detected; equipment condition cannot be fully assessed from this reading.",
+                    "detected_faults": [],
+                    "supporting_alert_count": 0,
+                    "evidence": {
+                        "xgboost_failure_alert": false,
+                        "isolation_forest_anomaly": false,
+                        "multilabel_fault_count": 0,
+                        "legacy_classifier_prediction": "NORMAL",
+                        "sensor_quality_warning": true
+                    },
+                    "sensor_quality": {
+                        "status": "SENSOR_QUALITY_WARNING",
+                        "known_simulation_flag": true,
+                        "explanation": "The simulator explicitly marked a sensor-quality issue."
+                    },
+                    "recommendations": [
+                        "Inspect sensor connections, calibration and data acquisition."
+                    ],
+                    "diagnostic_reliability": "COMPROMISED",
+                    "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "SENSOR_QUALITY_WARNING",
+                "severity": "WARNING",
+                "severity_reason": "Sensor quality issue detected; equipment condition cannot be fully assessed from this reading.",
+                "detected_faults": [],
+                "supporting_alert_count": 0,
+                "evidence": {
+                    "xgboost_failure_alert": false,
+                    "isolation_forest_anomaly": false,
+                    "multilabel_fault_count": 0,
+                    "legacy_classifier_prediction": "NORMAL",
+                    "sensor_quality_warning": true
+                },
+                "sensor_quality": {
+                    "status": "SENSOR_QUALITY_WARNING",
+                    "known_simulation_flag": true,
+                    "explanation": "The simulator explicitly marked a sensor-quality issue."
+                },
+                "recommendations": [
+                    "Inspect sensor connections, calibration and data acquisition."
+                ],
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "SENSOR_QUALITY_WARNING",
+            "severity": "WARNING",
+            "severity_reason": "Sensor quality issue detected; equipment condition cannot be fully assessed from this reading.",
+            "detected_faults": [],
+            "supporting_alert_count": 0,
+            "sensor_quality": {
+                "status": "SENSOR_QUALITY_WARNING",
+                "known_simulation_flag": true,
+                "explanation": "The simulator explicitly marked a sensor-quality issue."
+            },
+            "diagnostic_reliability": "COMPROMISED",
+            "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+            "recommendations": [
+                "Inspect sensor connections, calibration and data acquisition."
+            ]
+        },
+        {
+            "machine_id": "MACHINE-008",
+            "scenario": "TRIPLE_FAULT_WITH_SENSOR_ISSUE",
+            "injected_faults": [
+                "OVERHEATING",
+                "OVERLOAD",
+                "SPEED_ANOMALY"
+            ],
+            "injected_sensor_noise_multiplier": 4.0,
+            "injected_sensor_quality_issue": true,
+            "ground_truth_is_anomaly": true,
+            "diagnostic_result": {
+                "timestamp": "2026-11-16T19:58:47.586940+00:00",
+                "machine_id": "MACHINE-008",
+                "machine_type": "H",
+                "input_reading": {
+                    "timestamp": "2026-11-16T19:58:38.623643+00:00",
+                    "machine_id": "MACHINE-008",
+                    "machine_type": "H",
+                    "cycle": 100,
+                    "operating_hours": 9.6544,
+                    "health": 85.69,
+                    "tool_wear": 50.3322,
+                    "air_temperature": 312.7227,
+                    "process_temperature": 326.808,
+                    "rotational_speed": 1375.9997,
+                    "torque": 70.0013,
+                    "status": "NORMAL",
+                    "is_anomaly": true,
+                    "anomaly_type": "MULTIPLE_FAULTS",
+                    "fault_types": [
+                        "OVERHEATING",
+                        "OVERLOAD",
+                        "SPEED_ANOMALY"
+                    ],
+                    "sensor_quality_issue": true,
+                    "sensor_noise_multiplier": 4.0
+                },
+                "model_outputs": {
+                    "failure_prediction": {
+                        "model": "XGBoost",
+                        "training_domain": "UCI AI4I 2020 dataset",
+                        "prediction": "FAILURE_RISK",
+                        "failure_score": 0.988018,
+                        "decision_threshold": 0.826081,
+                        "score_interpretation": "Model score; not a guaranteed real-world failure probability."
+                    },
+                    "anomaly_detection": {
+                        "model": "Isolation Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "prediction": "ANOMALY",
+                        "anomaly_score": 0.691411,
+                        "decision_threshold": 0.527733
+                    },
+                    "fault_classification": {
+                        "model": "Noise-aware Random Forest",
+                        "training_domain": "Synthetic industrial simulator",
+                        "predicted_fault": "OVERHEATING",
+                        "class_scores": {
+                            "NORMAL": 0.057026,
+                            "OVERHEATING": 0.855022,
+                            "OVERLOAD": 0.074079,
+                            "SPEED_ANOMALY": 0.013872
+                        },
+                        "limitation": "Single-label classifier; cannot independently represent simultaneous faults."
+                    },
+                    "multilabel_fault_classification": {
+                        "model": "Multi-label Random Forest",
+                        "training_domain": "Synthetic multi-label fault simulator",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD"
+                        ],
+                        "fault_count": 2,
+                        "fault_results": {
+                            "OVERHEATING": {
+                                "score": 1.0,
+                                "threshold": 0.365,
+                                "detected": true
+                            },
+                            "OVERLOAD": {
+                                "score": 1.0,
+                                "threshold": 0.78,
+                                "detected": true
+                            },
+                            "SPEED_ANOMALY": {
+                                "score": 0.0,
+                                "threshold": 0.05,
+                                "detected": false
+                            }
+                        },
+                        "score_interpretation": "Random Forest scores; not guaranteed calibrated probabilities."
+                    }
+                },
+                "final_diagnosis": {
+                    "diagnosis": "MULTIPLE_FAULTS",
+                    "severity": "HIGH",
+                    "severity_reason": "Multiple fault detections or corroborating model alerts.",
+                    "detected_faults": [
+                        "OVERHEATING",
+                        "OVERLOAD"
+                    ],
+                    "supporting_alert_count": 3,
+                    "evidence": {
+                        "xgboost_failure_alert": true,
+                        "isolation_forest_anomaly": true,
+                        "multilabel_fault_count": 2,
+                        "legacy_classifier_prediction": "OVERHEATING",
+                        "sensor_quality_warning": true
+                    },
+                    "sensor_quality": {
+                        "status": "SENSOR_QUALITY_WARNING",
+                        "known_simulation_flag": true,
+                        "explanation": "The simulator explicitly marked a sensor-quality issue."
+                    },
+                    "recommendations": [
+                        "Inspect cooling and ventilation systems.",
+                        "Check temperature sensors and thermal operating conditions.",
+                        "Inspect mechanical load and torque conditions.",
+                        "Check for excessive friction or mechanical resistance.",
+                        "Inspect sensor connections, calibration and data acquisition.",
+                        "Review all detected fault signals together before authorizing maintenance."
+                    ],
+                    "diagnostic_reliability": "COMPROMISED",
+                    "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                    "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+                },
+                "limitations": [
+                    "The XGBoost model was trained on the UCI AI4I 2020 dataset.",
+                    "The anomaly detector and fault classifiers were trained on synthetic industrial simulator data.",
+                    "The multi-label fault model learns controlled synthetic fault-injection signatures.",
+                    "Model scores are not guaranteed calibrated probabilities.",
+                    "Sensor quality is not independently established from a single reading.",
+                    "Severity is assigned using transparent engineering rules that require further validation.",
+                    "The system is a research prototype, not a certified industrial safety system."
+                ]
+            },
+            "final_diagnosis": {
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "HIGH",
+                "severity_reason": "Multiple fault detections or corroborating model alerts.",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "supporting_alert_count": 3,
+                "evidence": {
+                    "xgboost_failure_alert": true,
+                    "isolation_forest_anomaly": true,
+                    "multilabel_fault_count": 2,
+                    "legacy_classifier_prediction": "OVERHEATING",
+                    "sensor_quality_warning": true
+                },
+                "sensor_quality": {
+                    "status": "SENSOR_QUALITY_WARNING",
+                    "known_simulation_flag": true,
+                    "explanation": "The simulator explicitly marked a sensor-quality issue."
+                },
+                "recommendations": [
+                    "Inspect cooling and ventilation systems.",
+                    "Check temperature sensors and thermal operating conditions.",
+                    "Inspect mechanical load and torque conditions.",
+                    "Check for excessive friction or mechanical resistance.",
+                    "Inspect sensor connections, calibration and data acquisition.",
+                    "Review all detected fault signals together before authorizing maintenance."
+                ],
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                "decision_policy": "Transparent rule-based synthesis; not a learned or independently validated severity model."
+            },
+            "diagnosis": "MULTIPLE_FAULTS",
+            "severity": "HIGH",
+            "severity_reason": "Multiple fault detections or corroborating model alerts.",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD"
+            ],
+            "supporting_alert_count": 3,
+            "sensor_quality": {
+                "status": "SENSOR_QUALITY_WARNING",
+                "known_simulation_flag": true,
+                "explanation": "The simulator explicitly marked a sensor-quality issue."
+            },
+            "diagnostic_reliability": "COMPROMISED",
+            "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+            "recommendations": [
+                "Inspect cooling and ventilation systems.",
+                "Check temperature sensors and thermal operating conditions.",
+                "Inspect mechanical load and torque conditions.",
+                "Check for excessive friction or mechanical resistance.",
+                "Inspect sensor connections, calibration and data acquisition.",
+                "Review all detected fault signals together before authorizing maintenance."
+            ]
+        }
+    ],
+    "fleet_analytics": {
+        "report_generated_at": "2026-11-16T19:58:47.586940+00:00",
+        "fleet_health": {
+            "generated_at": "2026-11-16T19:58:47.586940+00:00",
+            "fleet_overview": {
+                "total_machines": 8,
+                "fleet_status": "CRITICAL",
+                "fleet_health_percentage": 12.5,
+                "machines_requiring_attention": 7,
+                "attention_percentage": 87.5
+            },
+            "severity_distribution": {
+                "counts": {
+                    "NORMAL": 1,
+                    "WARNING": 4,
+                    "HIGH": 2,
+                    "CRITICAL": 1
+                },
+                "percentages": {
+                    "NORMAL": 12.5,
+                    "WARNING": 50.0,
+                    "HIGH": 25.0,
+                    "CRITICAL": 12.5
+                }
+            },
+            "diagnosis_distribution": {
+                "NORMAL_OPERATION": 1,
+                "OVERHEATING": 1,
+                "OVERLOAD": 1,
+                "SPEED_ANOMALY": 1,
+                "MULTIPLE_FAULTS": 3,
+                "SENSOR_QUALITY_WARNING": 1
+            },
+            "fault_summary": {
+                "total_detected_faults": 10,
+                "total_supporting_alerts": 13
+            },
+            "maintenance_overview": {
+                "critical_machines": [
+                    {
+                        "machine_id": "MACHINE-006",
+                        "diagnosis": "MULTIPLE_FAULTS",
+                        "severity": "CRITICAL",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD",
+                            "SPEED_ANOMALY"
+                        ],
+                        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                        "maintenance_action": "INVESTIGATE_EQUIPMENT"
+                    }
+                ],
+                "high_risk_machines": [
+                    {
+                        "machine_id": "MACHINE-005",
+                        "diagnosis": "MULTIPLE_FAULTS",
+                        "severity": "HIGH",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD"
+                        ],
+                        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                        "maintenance_action": "INVESTIGATE_EQUIPMENT"
+                    },
+                    {
+                        "machine_id": "MACHINE-008",
+                        "diagnosis": "MULTIPLE_FAULTS",
+                        "severity": "HIGH",
+                        "detected_faults": [
+                            "OVERHEATING",
+                            "OVERLOAD"
+                        ],
+                        "diagnostic_reliability": "COMPROMISED",
+                        "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT"
+                    }
+                ],
+                "warning_machines": [
+                    {
+                        "machine_id": "MACHINE-002",
+                        "diagnosis": "OVERHEATING",
+                        "severity": "WARNING",
+                        "detected_faults": [
+                            "OVERHEATING"
+                        ],
+                        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                        "maintenance_action": "INVESTIGATE_EQUIPMENT"
+                    },
+                    {
+                        "machine_id": "MACHINE-003",
+                        "diagnosis": "OVERLOAD",
+                        "severity": "WARNING",
+                        "detected_faults": [
+                            "OVERLOAD"
+                        ],
+                        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                        "maintenance_action": "INSPECT_EQUIPMENT"
+                    },
+                    {
+                        "machine_id": "MACHINE-004",
+                        "diagnosis": "SPEED_ANOMALY",
+                        "severity": "WARNING",
+                        "detected_faults": [
+                            "SPEED_ANOMALY"
+                        ],
+                        "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                        "maintenance_action": "INSPECT_EQUIPMENT"
+                    },
+                    {
+                        "machine_id": "MACHINE-007",
+                        "diagnosis": "SENSOR_QUALITY_WARNING",
+                        "severity": "WARNING",
+                        "detected_faults": [],
+                        "diagnostic_reliability": "COMPROMISED",
+                        "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT"
+                    }
+                ],
+                "sensor_warning_machines": [
+                    "MACHINE-007",
+                    "MACHINE-008"
+                ]
+            }
+        },
+        "risk_ranking": [
+            {
+                "machine_id": "MACHINE-006",
+                "severity": "CRITICAL",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD",
+                    "SPEED_ANOMALY"
+                ],
+                "detected_fault_count": 3,
+                "supporting_alert_count": 3,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 419,
+                "risk_rank": 1
+            },
+            {
+                "machine_id": "MACHINE-008",
+                "severity": "HIGH",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "detected_fault_count": 2,
+                "supporting_alert_count": 3,
+                "sensor_quality": "SENSOR_QUALITY_WARNING",
+                "ranking_score": 327,
+                "risk_rank": 2
+            },
+            {
+                "machine_id": "MACHINE-005",
+                "severity": "HIGH",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "detected_fault_count": 2,
+                "supporting_alert_count": 3,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 317,
+                "risk_rank": 3
+            },
+            {
+                "machine_id": "MACHINE-007",
+                "severity": "WARNING",
+                "diagnosis": "SENSOR_QUALITY_WARNING",
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                "detected_faults": [],
+                "detected_fault_count": 0,
+                "supporting_alert_count": 0,
+                "sensor_quality": "SENSOR_QUALITY_WARNING",
+                "ranking_score": 220,
+                "risk_rank": 4
+            },
+            {
+                "machine_id": "MACHINE-002",
+                "severity": "WARNING",
+                "diagnosis": "OVERHEATING",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "detected_faults": [
+                    "OVERHEATING"
+                ],
+                "detected_fault_count": 1,
+                "supporting_alert_count": 2,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 214,
+                "risk_rank": 5
+            },
+            {
+                "machine_id": "MACHINE-003",
+                "severity": "WARNING",
+                "diagnosis": "OVERLOAD",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INSPECT_EQUIPMENT",
+                "detected_faults": [
+                    "OVERLOAD"
+                ],
+                "detected_fault_count": 1,
+                "supporting_alert_count": 1,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 213,
+                "risk_rank": 6
+            },
+            {
+                "machine_id": "MACHINE-004",
+                "severity": "WARNING",
+                "diagnosis": "SPEED_ANOMALY",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INSPECT_EQUIPMENT",
+                "detected_faults": [
+                    "SPEED_ANOMALY"
+                ],
+                "detected_fault_count": 1,
+                "supporting_alert_count": 1,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 213,
+                "risk_rank": 7
+            },
+            {
+                "machine_id": "MACHINE-001",
+                "severity": "NORMAL",
+                "diagnosis": "NORMAL_OPERATION",
+                "diagnostic_reliability": "NO_ALERT",
+                "maintenance_action": "CONTINUE_ROUTINE_MONITORING",
+                "detected_faults": [],
+                "detected_fault_count": 0,
+                "supporting_alert_count": 0,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 100,
+                "risk_rank": 8
+            }
+        ],
+        "highest_priority_machine": {
+            "machine_id": "MACHINE-006",
+            "severity": "CRITICAL",
+            "diagnosis": "MULTIPLE_FAULTS",
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "maintenance_action": "INVESTIGATE_EQUIPMENT",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD",
+                "SPEED_ANOMALY"
+            ],
+            "detected_fault_count": 3,
+            "supporting_alert_count": 3,
+            "sensor_quality": "NOT_ASSESSED",
+            "ranking_score": 419,
+            "risk_rank": 1
+        },
+        "critical_machine_count": 1,
+        "high_risk_machine_count": 2,
+        "fault_frequency": {
+            "OVERHEATING": 4,
+            "OVERLOAD": 4,
+            "SPEED_ANOMALY": 2
+        },
+        "maintenance_action_distribution": {
+            "CONTINUE_ROUTINE_MONITORING": 1,
+            "INSPECT_EQUIPMENT": 2,
+            "INVESTIGATE_EQUIPMENT": 3,
+            "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT": 2
+        },
+        "sensor_quality_summary": {
+            "machines_with_sensor_warnings": [],
+            "sensor_warning_count": 0,
+            "machines_not_assessed": [
+                "MACHINE-001",
+                "MACHINE-002",
+                "MACHINE-003",
+                "MACHINE-004",
+                "MACHINE-005",
+                "MACHINE-006"
+            ],
+            "not_assessed_count": 6
+        },
+        "critical_machines": [
+            {
+                "machine_id": "MACHINE-006",
+                "severity": "CRITICAL",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD",
+                    "SPEED_ANOMALY"
+                ],
+                "detected_fault_count": 3,
+                "supporting_alert_count": 3,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 419,
+                "risk_rank": 1
+            }
+        ],
+        "high_risk_machines": [
+            {
+                "machine_id": "MACHINE-008",
+                "severity": "HIGH",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "detected_fault_count": 2,
+                "supporting_alert_count": 3,
+                "sensor_quality": "SENSOR_QUALITY_WARNING",
+                "ranking_score": 327,
+                "risk_rank": 2
+            },
+            {
+                "machine_id": "MACHINE-005",
+                "severity": "HIGH",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "detected_fault_count": 2,
+                "supporting_alert_count": 3,
+                "sensor_quality": "NOT_ASSESSED",
+                "ranking_score": 317,
+                "risk_rank": 3
+            }
+        ],
+        "analytics_metadata": {
+            "total_machines_analyzed": 8,
+            "ranking_method": "RULE_BASED_SEVERITY_AND_EVIDENCE",
+            "ml_models_executed": false,
+            "risk_score_is_probability": false,
+            "data_source": "EXISTING_DIAGNOSTIC_ENGINE_OUTPUTS"
+        }
+    },
+    "simulator_status": {
+        "total_machines": 8,
+        "average_health": 89.77,
+        "status_counts": {
+            "NORMAL": 8,
+            "WARNING": 0,
+            "DEGRADED": 0,
+            "CRITICAL": 0
+        },
+        "machines": [
+            {
+                "machine_id": "MACHINE-001",
+                "machine_type": "M",
+                "health": 90.63,
+                "tool_wear": 51.89,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-002",
+                "machine_type": "L",
+                "health": 94.49,
+                "tool_wear": 50.13,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-003",
+                "machine_type": "H",
+                "health": 85.77,
+                "tool_wear": 47.26,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-004",
+                "machine_type": "M",
+                "health": 90.62,
+                "tool_wear": 53.08,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-005",
+                "machine_type": "L",
+                "health": 94.51,
+                "tool_wear": 49.86,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-006",
+                "machine_type": "H",
+                "health": 85.78,
+                "tool_wear": 48.55,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-007",
+                "machine_type": "M",
+                "health": 90.64,
+                "tool_wear": 52.09,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            },
+            {
+                "machine_id": "MACHINE-008",
+                "machine_type": "H",
+                "health": 85.69,
+                "tool_wear": 51.5,
+                "operating_hours": 10.0,
+                "status": "NORMAL"
+            }
+        ]
+    },
+    "validation": {
+        "passed": 8,
+        "total": 8,
+        "all_passed": true,
+        "checks": {
+            "eight_scenarios_executed": true,
+            "unique_machine_ids": true,
+            "all_scenarios_have_diagnostics": true,
+            "all_severities_valid": true,
+            "injected_fault_labels_preserved": true,
+            "sensor_issue_scenarios_present": true,
+            "multi_fault_scenarios_present": true,
+            "fleet_analytics_generated": true
+        }
+    }
+}

@@ -1,0 +1,100 @@
+{
+    "generated_at": "2026-11-16T19:20:04.855572+00:00",
+    "fleet_overview": {
+        "total_machines": 8,
+        "fleet_status": "CRITICAL",
+        "fleet_health_percentage": 37.5,
+        "machines_requiring_attention": 5,
+        "attention_percentage": 62.5
+    },
+    "severity_distribution": {
+        "counts": {
+            "NORMAL": 3,
+            "WARNING": 2,
+            "HIGH": 1,
+            "CRITICAL": 2
+        },
+        "percentages": {
+            "NORMAL": 37.5,
+            "WARNING": 25.0,
+            "HIGH": 12.5,
+            "CRITICAL": 25.0
+        }
+    },
+    "diagnosis_distribution": {
+        "NORMAL_OPERATION": 3,
+        "OVERHEATING": 1,
+        "OVERLOAD": 1,
+        "MULTIPLE_FAULTS": 3
+    },
+    "fault_summary": {
+        "total_detected_faults": 10,
+        "total_supporting_alerts": 10
+    },
+    "maintenance_overview": {
+        "critical_machines": [
+            {
+                "machine_id": "MACHINE-007",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "CRITICAL",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD",
+                    "SPEED_ANOMALY"
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT"
+            },
+            {
+                "machine_id": "MACHINE-008",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "CRITICAL",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD",
+                    "SPEED_ANOMALY"
+                ],
+                "diagnostic_reliability": "COMPROMISED",
+                "maintenance_action": "VERIFY_SENSORS_BEFORE_FINAL_ASSESSMENT"
+            }
+        ],
+        "high_risk_machines": [
+            {
+                "machine_id": "MACHINE-006",
+                "diagnosis": "MULTIPLE_FAULTS",
+                "severity": "HIGH",
+                "detected_faults": [
+                    "OVERHEATING",
+                    "OVERLOAD"
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT"
+            }
+        ],
+        "warning_machines": [
+            {
+                "machine_id": "MACHINE-004",
+                "diagnosis": "OVERHEATING",
+                "severity": "WARNING",
+                "detected_faults": [
+                    "OVERHEATING"
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT"
+            },
+            {
+                "machine_id": "MACHINE-005",
+                "diagnosis": "OVERLOAD",
+                "severity": "WARNING",
+                "detected_faults": [
+                    "OVERLOAD"
+                ],
+                "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+                "maintenance_action": "INVESTIGATE_EQUIPMENT"
+            }
+        ],
+        "sensor_warning_machines": [
+            "MACHINE-008"
+        ]
+    }
+}

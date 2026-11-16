@@ -1,0 +1,47 @@
+{
+    "model": "Isolation Forest",
+    "evaluation_type": "Unsupervised model with supervised training-set threshold calibration",
+    "threshold": 0.5199677289991179,
+    "precision": 0.823321554770318,
+    "recall": 0.9282868525896414,
+    "f1_score": 0.8726591760299626,
+    "roc_auc": 0.9948343575453633,
+    "pr_auc": 0.9592422906165581,
+    "confusion_matrix": [
+        [
+            2199,
+            50
+        ],
+        [
+            18,
+            233
+        ]
+    ],
+    "classification_report": {
+        "0": {
+            "precision": 0.9918809201623816,
+            "recall": 0.9777678968430413,
+            "f1-score": 0.9847738468428123,
+            "support": 2249.0
+        },
+        "1": {
+            "precision": 0.823321554770318,
+            "recall": 0.9282868525896414,
+            "f1-score": 0.8726591760299626,
+            "support": 251.0
+        },
+        "accuracy": 0.9728,
+        "macro avg": {
+            "precision": 0.9076012374663498,
+            "recall": 0.9530273747163414,
+            "f1-score": 0.9287165114363874,
+            "support": 2500.0
+        },
+        "weighted avg": {
+            "precision": 0.9749575598770185,
+            "recall": 0.9728,
+            "f1-score": 0.9735175338932022,
+            "support": 2500.0
+        }
+    }
+}

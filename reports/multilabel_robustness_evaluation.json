@@ -1,0 +1,388 @@
+{
+    "experiment": "Multi-label fault classifier noise robustness",
+    "model": "Multi-label Industrial Fault Random Forest",
+    "dataset": "C:\\Users\\Vinay\\Desktop\\Predictive-Maintenance-AI\\data\\simulated\\multi_label_fault_dataset.csv",
+    "test_observations": 18056,
+    "test_machines": [
+        "MACHINE-002",
+        "MACHINE-005",
+        "MACHINE-009",
+        "MACHINE-014",
+        "MACHINE-018"
+    ],
+    "training_machines": [
+        "MACHINE-001",
+        "MACHINE-004",
+        "MACHINE-006",
+        "MACHINE-007",
+        "MACHINE-008",
+        "MACHINE-010",
+        "MACHINE-011",
+        "MACHINE-013",
+        "MACHINE-015",
+        "MACHINE-016",
+        "MACHINE-017",
+        "MACHINE-020"
+    ],
+    "calibration_machines": [
+        "MACHINE-003",
+        "MACHINE-012",
+        "MACHINE-019"
+    ],
+    "targets": [
+        "fault_overheating",
+        "fault_overload",
+        "fault_speed_anomaly"
+    ],
+    "thresholds": {
+        "fault_overheating": 0.36499999999999994,
+        "fault_overload": 0.7799999999999999,
+        "fault_speed_anomaly": 0.05
+    },
+    "noise_scales": {
+        "air_temperature": 0.7,
+        "process_temperature": 0.7,
+        "rotational_speed": 25.0,
+        "torque": 2.0,
+        "tool_wear": 1.0,
+        "operating_hours": 0.1
+    },
+    "noise_levels": [
+        {
+            "noise_level": 0.0,
+            "observations": 18056,
+            "micro_precision": 0.9996309009707305,
+            "micro_recall": 0.9999630778319303,
+            "micro_f1": 0.9997969618103624,
+            "macro_precision": 0.9996310153458463,
+            "macro_recall": 0.9999630778319303,
+            "macro_f1": 0.9997969945088077,
+            "exact_match_accuracy": 0.9993907842268498,
+            "hamming_loss": 0.0002030719243833998
+        },
+        {
+            "noise_level": 0.5,
+            "observations": 18056,
+            "micro_precision": 0.9990774907749077,
+            "micro_recall": 0.9996677004873726,
+            "micro_f1": 0.999372508489591,
+            "macro_precision": 0.9990777955798565,
+            "macro_recall": 0.9996677004873726,
+            "macro_f1": 0.9993726276668848,
+            "exact_match_accuracy": 0.9981169694284449,
+            "hamming_loss": 0.0006276768571850539
+        },
+        {
+            "noise_level": 1.0,
+            "observations": 18056,
+            "micro_precision": 0.9981926822071407,
+            "micro_recall": 0.9992246344705361,
+            "micro_f1": 0.9987083917632298,
+            "macro_precision": 0.998193365935454,
+            "macro_recall": 0.9992246344705361,
+            "macro_f1": 0.9987086844490743,
+            "exact_match_accuracy": 0.9961231723526806,
+            "hamming_loss": 0.0012922758824398168
+        },
+        {
+            "noise_level": 2.0,
+            "observations": 18056,
+            "micro_precision": 0.9907318867230599,
+            "micro_recall": 0.9946093634618225,
+            "micro_f1": 0.9926668386335998,
+            "macro_precision": 0.9907351925372284,
+            "macro_recall": 0.9946093634618225,
+            "macro_f1": 0.9926617137786834,
+            "exact_match_accuracy": 0.9780682321665928,
+            "hamming_loss": 0.0073475114458721015
+        },
+        {
+            "noise_level": 3.0,
+            "observations": 18056,
+            "micro_precision": 0.9654759746146873,
+            "micro_recall": 0.9829788805198642,
+            "micro_f1": 0.9741488135531202,
+            "macro_precision": 0.9656546576545676,
+            "macro_recall": 0.9829788805198642,
+            "macro_f1": 0.9741542769442318,
+            "exact_match_accuracy": 0.9239034116083297,
+            "hamming_loss": 0.026085511741249446
+        },
+        {
+            "noise_level": 4.0,
+            "observations": 18056,
+            "micro_precision": 0.9319468679890317,
+            "micro_recall": 0.966253138384286,
+            "micro_f1": 0.9487899936553974,
+            "macro_precision": 0.9323669975407611,
+            "macro_recall": 0.9662531383842858,
+            "macro_f1": 0.9488247497219765,
+            "exact_match_accuracy": 0.851019051838724,
+            "hamming_loss": 0.05215256239846404
+        }
+    ],
+    "confusion_matrices": {
+        "0.0": {
+            "fault_overheating": {
+                "true_negative": 9027,
+                "false_positive": 1,
+                "false_negative": 0,
+                "true_positive": 9028
+            },
+            "fault_overload": {
+                "true_negative": 9020,
+                "false_positive": 8,
+                "false_negative": 1,
+                "true_positive": 9027
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 9027,
+                "false_positive": 1,
+                "false_negative": 0,
+                "true_positive": 9028
+            }
+        },
+        "0.5": {
+            "fault_overheating": {
+                "true_negative": 9025,
+                "false_positive": 3,
+                "false_negative": 0,
+                "true_positive": 9028
+            },
+            "fault_overload": {
+                "true_negative": 9009,
+                "false_positive": 19,
+                "false_negative": 9,
+                "true_positive": 9019
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 9025,
+                "false_positive": 3,
+                "false_negative": 0,
+                "true_positive": 9028
+            }
+        },
+        "1.0": {
+            "fault_overheating": {
+                "true_negative": 9021,
+                "false_positive": 7,
+                "false_negative": 0,
+                "true_positive": 9028
+            },
+            "fault_overload": {
+                "true_negative": 8992,
+                "false_positive": 36,
+                "false_negative": 21,
+                "true_positive": 9007
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 9022,
+                "false_positive": 6,
+                "false_negative": 0,
+                "true_positive": 9028
+            }
+        },
+        "2.0": {
+            "fault_overheating": {
+                "true_negative": 9006,
+                "false_positive": 22,
+                "false_negative": 0,
+                "true_positive": 9028
+            },
+            "fault_overload": {
+                "true_negative": 8910,
+                "false_positive": 118,
+                "false_negative": 133,
+                "true_positive": 8895
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 8916,
+                "false_positive": 112,
+                "false_negative": 13,
+                "true_positive": 9015
+            }
+        },
+        "3.0": {
+            "fault_overheating": {
+                "true_negative": 8918,
+                "false_positive": 110,
+                "false_negative": 0,
+                "true_positive": 9028
+            },
+            "fault_overload": {
+                "true_negative": 8686,
+                "false_positive": 342,
+                "false_negative": 359,
+                "true_positive": 8669
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 8528,
+                "false_positive": 500,
+                "false_negative": 102,
+                "true_positive": 8926
+            }
+        },
+        "4.0": {
+            "fault_overheating": {
+                "true_negative": 8778,
+                "false_positive": 250,
+                "false_negative": 5,
+                "true_positive": 9023
+            },
+            "fault_overload": {
+                "true_negative": 8322,
+                "false_positive": 706,
+                "false_negative": 644,
+                "true_positive": 8384
+            },
+            "fault_speed_anomaly": {
+                "true_negative": 8073,
+                "false_positive": 955,
+                "false_negative": 265,
+                "true_positive": 8763
+            }
+        }
+    },
+    "scenario_metrics": {
+        "0.0": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9997046226554424,
+                "macro_f1": 0.9999261720191953
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.998227735932654,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9992615566386058,
+                "macro_f1": 0.9996309254883421
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 1.0,
+                "macro_f1": 1.0
+            }
+        },
+        "0.5": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.999113867966327,
+                "macro_f1": 0.9997784506299056
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9968985378821444,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9974892925712597,
+                "macro_f1": 0.9987470132394746
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.998227735932654,
+                "macro_f1": 0.9997043606799704
+            }
+        },
+        "1.0": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9974892925712597,
+                "macro_f1": 0.9993724008374475
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9946832077979619,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9948308964702407,
+                "macro_f1": 0.9974203621955214
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.997341603898981,
+                "macro_f1": 0.9995563442768413
+            }
+        },
+        "2.0": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9812435386205878,
+                "macro_f1": 0.9952947972010295
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9649977846699158,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.977403633141338,
+                "macro_f1": 0.9887082670327688
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9836065573770492,
+                "macro_f1": 0.9972513401873178
+            }
+        },
+        "3.0": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9351646728695909,
+                "macro_f1": 0.9835164478606795
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9029685423128047,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.9133067493723231,
+                "macro_f1": 0.9568874385531934
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.9428444838280904,
+                "macro_f1": 0.9902713445710022
+            }
+        },
+        "4.0": {
+            "DOUBLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.8667848176044898,
+                "macro_f1": 0.9659678756948565
+            },
+            "NORMAL": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.8068232166592822,
+                "macro_f1": 0.0
+            },
+            "SINGLE_FAULT": {
+                "observations": 6771,
+                "exact_match_accuracy": 0.8337025550140305,
+                "macro_f1": 0.9170640783560821
+            },
+            "TRIPLE_FAULT": {
+                "observations": 2257,
+                "exact_match_accuracy": 0.8998670801949491,
+                "macro_f1": 0.9828233280597907
+            }
+        }
+    },
+    "limitations": [
+        "The test machines are unseen, but the simulator design is shared.",
+        "Noise is synthetically generated.",
+        "Original fault labels are retained after noise injection.",
+        "The same source observations appear in multiple scenario variants.",
+        "The experiment does not establish real-world industrial performance.",
+        "Random Forest scores are not guaranteed calibrated probabilities."
+    ]
+}

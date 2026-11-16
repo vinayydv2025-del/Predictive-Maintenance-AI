@@ -1,0 +1,5 @@
+part_name,required_quantity,planning_basis
+cooling_filter_kit,3,SYNTHETIC_MAINTENANCE_RULES
+drive_bearing_kit,3,SYNTHETIC_MAINTENANCE_RULES
+sensor_inspection_kit,2,SYNTHETIC_MAINTENANCE_RULES
+speed_sensor,2,SYNTHETIC_MAINTENANCE_RULES

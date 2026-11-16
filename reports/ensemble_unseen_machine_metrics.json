@@ -1,0 +1,105 @@
+{
+    "experiment": "Ensemble evaluation on machines unseen to both simulator models",
+    "evaluation_machines": [
+        "MACHINE-002",
+        "MACHINE-009",
+        "MACHINE-018"
+    ],
+    "observations": 1500,
+    "anomaly_detection": {
+        "accuracy": 0.982,
+        "precision": 0.9465648854961832,
+        "recall": 0.8611111111111112,
+        "f1": 0.9018181818181819,
+        "confusion_matrix": [
+            [
+                1349,
+                7
+            ],
+            [
+                20,
+                124
+            ]
+        ]
+    },
+    "fault_classification": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "confusion_matrix": [
+            [
+                1356,
+                0,
+                0,
+                0
+            ],
+            [
+                0,
+                44,
+                0,
+                0
+            ],
+            [
+                0,
+                0,
+                53,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                47
+            ]
+        ],
+        "classification_report": {
+            "NORMAL": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 1356.0
+            },
+            "OVERHEATING": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 44.0
+            },
+            "OVERLOAD": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 53.0
+            },
+            "SPEED_ANOMALY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 47.0
+            },
+            "accuracy": 1.0,
+            "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 1500.0
+            },
+            "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 1500.0
+            }
+        }
+    },
+    "diagnostic_agreement": {
+        "anomaly_alerts": 131,
+        "non_normal_fault_classifications": 144,
+        "both_models_indicate_fault": 124
+    },
+    "limitations": [
+        "Evaluation uses synthetic simulator data.",
+        "Fault labels originate from controlled fault injection.",
+        "The XGBoost model uses a separate AI4I training domain.",
+        "This evaluation does not establish real-world industrial performance."
+    ]
+}

@@ -1,0 +1,256 @@
+{
+    "generated_at": "2026-11-16T20:05:03.469932+00:00",
+    "platform": "INDUSTRIAL_MAINTENANCE_PLANNING_ENGINE",
+    "data_source": "SYNTHETIC_SCENARIO_FLEET_REPORT",
+    "real_world_cost_validation": false,
+    "planning_assumptions": {
+        "technicians_per_day": 2,
+        "technician_hours_per_day": 8,
+        "labor_rate_simulation_units_per_hour": 60.0,
+        "scheduling_method": "PRIORITY_FIRST_FIRST_FIT",
+        "work_orders_are_indivisible": true
+    },
+    "fleet_maintenance_summary": {
+        "machines_analyzed": 8,
+        "work_orders_created": 7,
+        "machines_without_work_orders": 1,
+        "schedule_days_required": 2,
+        "total_estimated_downtime_hours": 25.0,
+        "total_estimated_cost_simulation_units": 2870.0
+    },
+    "work_orders": [
+        {
+            "machine_id": "MACHINE-006",
+            "severity": "CRITICAL",
+            "diagnosis": "MULTIPLE_FAULTS",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD",
+                "SPEED_ANOMALY"
+            ],
+            "priority_score": 419,
+            "work_order_type": "EQUIPMENT_INSPECTION_AND_REPAIR",
+            "recommended_action": "Inspect cooling system and replace the filter kit | Inspect load conditions and drive-bearing assembly | Inspect rotational-speed sensing and drive control",
+            "work_order_status": "READY_FOR_MAINTENANCE",
+            "equipment_repair_authorized": true,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 8.0,
+            "estimated_labor_cost": 480.0,
+            "estimated_parts_cost": 470.0,
+            "estimated_total_cost": 950.0,
+            "estimated_downtime_hours": 8.0,
+            "required_parts": {
+                "cooling_filter_kit": 1,
+                "drive_bearing_kit": 1,
+                "speed_sensor": 1
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "scheduled_day": 1,
+            "assigned_technician": "TECHNICIAN-01"
+        },
+        {
+            "machine_id": "MACHINE-008",
+            "severity": "HIGH",
+            "diagnosis": "MULTIPLE_FAULTS",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD"
+            ],
+            "priority_score": 327,
+            "work_order_type": "SENSOR_VERIFICATION",
+            "recommended_action": "Verify sensor integrity before confirming equipment faults",
+            "work_order_status": "READY_FOR_SENSOR_INSPECTION",
+            "equipment_repair_authorized": false,
+            "provisional_equipment_action": "Reassess detected faults after sensor verification",
+            "estimated_duration_hours": 1.5,
+            "estimated_labor_cost": 90.0,
+            "estimated_parts_cost": 25.0,
+            "estimated_total_cost": 115.0,
+            "estimated_downtime_hours": 1.5,
+            "required_parts": {
+                "sensor_inspection_kit": 1
+            },
+            "diagnostic_reliability": "COMPROMISED",
+            "scheduled_day": 1,
+            "assigned_technician": "TECHNICIAN-02"
+        },
+        {
+            "machine_id": "MACHINE-005",
+            "severity": "HIGH",
+            "diagnosis": "MULTIPLE_FAULTS",
+            "detected_faults": [
+                "OVERHEATING",
+                "OVERLOAD"
+            ],
+            "priority_score": 317,
+            "work_order_type": "EQUIPMENT_INSPECTION_AND_REPAIR",
+            "recommended_action": "Inspect cooling system and replace the filter kit | Inspect load conditions and drive-bearing assembly",
+            "work_order_status": "READY_FOR_MAINTENANCE",
+            "equipment_repair_authorized": true,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 6.0,
+            "estimated_labor_cost": 360.0,
+            "estimated_parts_cost": 380.0,
+            "estimated_total_cost": 740.0,
+            "estimated_downtime_hours": 6.0,
+            "required_parts": {
+                "cooling_filter_kit": 1,
+                "drive_bearing_kit": 1
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "scheduled_day": 1,
+            "assigned_technician": "TECHNICIAN-02"
+        },
+        {
+            "machine_id": "MACHINE-007",
+            "severity": "WARNING",
+            "diagnosis": "SENSOR_QUALITY_WARNING",
+            "detected_faults": [],
+            "priority_score": 220,
+            "work_order_type": "SENSOR_VERIFICATION",
+            "recommended_action": "Verify sensor integrity before confirming equipment faults",
+            "work_order_status": "READY_FOR_SENSOR_INSPECTION",
+            "equipment_repair_authorized": false,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 1.5,
+            "estimated_labor_cost": 90.0,
+            "estimated_parts_cost": 25.0,
+            "estimated_total_cost": 115.0,
+            "estimated_downtime_hours": 1.5,
+            "required_parts": {
+                "sensor_inspection_kit": 1
+            },
+            "diagnostic_reliability": "COMPROMISED",
+            "scheduled_day": 2,
+            "assigned_technician": "TECHNICIAN-01"
+        },
+        {
+            "machine_id": "MACHINE-002",
+            "severity": "WARNING",
+            "diagnosis": "OVERHEATING",
+            "detected_faults": [
+                "OVERHEATING"
+            ],
+            "priority_score": 214,
+            "work_order_type": "EQUIPMENT_INSPECTION_AND_REPAIR",
+            "recommended_action": "Inspect cooling system and replace the filter kit",
+            "work_order_status": "READY_FOR_MAINTENANCE",
+            "equipment_repair_authorized": true,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 2.5,
+            "estimated_labor_cost": 150.0,
+            "estimated_parts_cost": 120.0,
+            "estimated_total_cost": 270.0,
+            "estimated_downtime_hours": 2.5,
+            "required_parts": {
+                "cooling_filter_kit": 1
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "scheduled_day": 2,
+            "assigned_technician": "TECHNICIAN-01"
+        },
+        {
+            "machine_id": "MACHINE-003",
+            "severity": "WARNING",
+            "diagnosis": "OVERLOAD",
+            "detected_faults": [
+                "OVERLOAD"
+            ],
+            "priority_score": 213,
+            "work_order_type": "EQUIPMENT_INSPECTION_AND_REPAIR",
+            "recommended_action": "Inspect load conditions and drive-bearing assembly",
+            "work_order_status": "READY_FOR_MAINTENANCE",
+            "equipment_repair_authorized": true,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 3.5,
+            "estimated_labor_cost": 210.0,
+            "estimated_parts_cost": 260.0,
+            "estimated_total_cost": 470.0,
+            "estimated_downtime_hours": 3.5,
+            "required_parts": {
+                "drive_bearing_kit": 1
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "scheduled_day": 2,
+            "assigned_technician": "TECHNICIAN-01"
+        },
+        {
+            "machine_id": "MACHINE-004",
+            "severity": "WARNING",
+            "diagnosis": "SPEED_ANOMALY",
+            "detected_faults": [
+                "SPEED_ANOMALY"
+            ],
+            "priority_score": 213,
+            "work_order_type": "EQUIPMENT_INSPECTION_AND_REPAIR",
+            "recommended_action": "Inspect rotational-speed sensing and drive control",
+            "work_order_status": "READY_FOR_MAINTENANCE",
+            "equipment_repair_authorized": true,
+            "provisional_equipment_action": null,
+            "estimated_duration_hours": 2.0,
+            "estimated_labor_cost": 120.0,
+            "estimated_parts_cost": 90.0,
+            "estimated_total_cost": 210.0,
+            "estimated_downtime_hours": 2.0,
+            "required_parts": {
+                "speed_sensor": 1
+            },
+            "diagnostic_reliability": "ACTIONABLE_WITH_INVESTIGATION",
+            "scheduled_day": 2,
+            "assigned_technician": "TECHNICIAN-02"
+        }
+    ],
+    "spare_parts_forecast": [
+        {
+            "part_name": "cooling_filter_kit",
+            "required_quantity": 3,
+            "planning_basis": "SYNTHETIC_MAINTENANCE_RULES"
+        },
+        {
+            "part_name": "drive_bearing_kit",
+            "required_quantity": 3,
+            "planning_basis": "SYNTHETIC_MAINTENANCE_RULES"
+        },
+        {
+            "part_name": "sensor_inspection_kit",
+            "required_quantity": 2,
+            "planning_basis": "SYNTHETIC_MAINTENANCE_RULES"
+        },
+        {
+            "part_name": "speed_sensor",
+            "required_quantity": 2,
+            "planning_basis": "SYNTHETIC_MAINTENANCE_RULES"
+        }
+    ],
+    "daily_technician_capacity": [
+        {
+            "day": 1,
+            "technician_hours": [
+                8.0,
+                7.5
+            ],
+            "total_hours": 15.5
+        },
+        {
+            "day": 2,
+            "technician_hours": [
+                7.5,
+                2.0
+            ],
+            "total_hours": 9.5
+        }
+    ],
+    "validation": {
+        "passed": 6,
+        "total": 6,
+        "all_passed": true,
+        "checks": {
+            "all_work_orders_have_machine_ids": true,
+            "all_work_orders_have_valid_schedules": true,
+            "technician_daily_capacity_respected": true,
+            "sensor_compromised_machines_not_authorized_for_repair": true,
+            "spare_parts_forecast_generated": true,
+            "cost_estimates_nonnegative": true
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "dataset": "Synthetic multi-label industrial fault dataset",
+    "source_dataset": "C:\\Users\\Vinay\\Desktop\\Predictive-Maintenance-AI\\data\\simulated\\sensor_readings.csv",
+    "source_normal_observations": 8996,
+    "scenarios_per_observation": 8,
+    "total_observations": 71968,
+    "features": [
+        "air_temperature",
+        "process_temperature",
+        "rotational_speed",
+        "torque",
+        "tool_wear",
+        "operating_hours",
+        "machine_type"
+    ],
+    "targets": [
+        "fault_overheating",
+        "fault_overload",
+        "fault_speed_anomaly"
+    ],
+    "split_counts": {
+        "TRAIN": 43224,
+        "TEST": 18056,
+        "CALIBRATION": 10688
+    },
+    "machine_counts": {
+        "CALIBRATION": 3,
+        "TEST": 5,
+        "TRAIN": 12
+    },
+    "scenario_counts": {
+        "SINGLE_FAULT": 26988,
+        "DOUBLE_FAULT": 26988,
+        "NORMAL": 8996,
+        "TRIPLE_FAULT": 8996
+    },
+    "fault_positive_counts": {
+        "fault_overheating": 35984,
+        "fault_overload": 35984,
+        "fault_speed_anomaly": 35984
+    },
+    "validation": {
+        "expected_row_count": true,
+        "no_missing_values": true,
+        "no_duplicate_rows": true,
+        "valid_binary_targets": true,
+        "normal_labels_consistent": true,
+        "anomaly_labels_consistent": true,
+        "machine_split_valid": true,
+        "machine_separation": true
+    },
+    "limitations": [
+        "All fault signals are synthetically injected.",
+        "The simulator does not represent validated physical failure mechanisms.",
+        "Training and test observations are derived from the same simulator design.",
+        "Machine-held-out testing evaluates unseen simulated machines, not real industrial generalization.",
+        "Sensor noise is not included in this equipment-fault dataset."
+    ]
+}

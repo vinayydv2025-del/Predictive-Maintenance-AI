@@ -1,0 +1,94 @@
+{
+    "experiment": "Machine-held-out Isolation Forest evaluation",
+    "model": "IsolationForest",
+    "features": [
+        "air_temperature",
+        "process_temperature",
+        "rotational_speed",
+        "torque",
+        "tool_wear",
+        "operating_hours"
+    ],
+    "threshold": 0.5277330144334736,
+    "threshold_selection": "Maximum F1 on separate machine-level calibration group",
+    "test_metrics": {
+        "precision": 0.9144144144144144,
+        "recall": 0.8353909465020576,
+        "f1": 0.8731182795698925,
+        "roc_auc": 0.9957589647935732,
+        "pr_auc": 0.9635195269394135,
+        "confusion_matrix": [
+            [
+                2238,
+                19
+            ],
+            [
+                40,
+                203
+            ]
+        ],
+        "classification_report": {
+            "Normal": {
+                "precision": 0.9824407374890255,
+                "recall": 0.9915817456801064,
+                "f1-score": 0.9869900771775083,
+                "support": 2257.0
+            },
+            "Anomaly": {
+                "precision": 0.9144144144144144,
+                "recall": 0.8353909465020576,
+                "f1-score": 0.8731182795698925,
+                "support": 243.0
+            },
+            "accuracy": 0.9764,
+            "macro avg": {
+                "precision": 0.94842757595172,
+                "recall": 0.913486346091082,
+                "f1-score": 0.9300541783737004,
+                "support": 2500.0
+            },
+            "weighted avg": {
+                "precision": 0.9758285788861732,
+                "recall": 0.9764,
+                "f1-score": 0.975921738450048,
+                "support": 2500.0
+            }
+        }
+    },
+    "test_observations": 2500,
+    "test_normal_observations": 2257,
+    "test_anomaly_observations": 243,
+    "machine_split": {
+        "model_fitting_machines": [
+            "MACHINE-003",
+            "MACHINE-004",
+            "MACHINE-007",
+            "MACHINE-010",
+            "MACHINE-011",
+            "MACHINE-012",
+            "MACHINE-013",
+            "MACHINE-014",
+            "MACHINE-015",
+            "MACHINE-017",
+            "MACHINE-019",
+            "MACHINE-020"
+        ],
+        "calibration_machines": [
+            "MACHINE-005",
+            "MACHINE-006",
+            "MACHINE-008"
+        ],
+        "test_machines": [
+            "MACHINE-001",
+            "MACHINE-002",
+            "MACHINE-009",
+            "MACHINE-016",
+            "MACHINE-018"
+        ]
+    },
+    "calibration_metrics": {
+        "precision": 0.8873239436619719,
+        "recall": 0.84,
+        "f1": 0.863013698630137
+    }
+}
