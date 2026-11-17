@@ -1,0 +1,1200 @@
+{
+    "benchmark_metadata": {
+        "benchmark_name": "CP-SAT Warm Start vs Cold Start",
+        "workload_sizes": [
+            7,
+            14,
+            21,
+            35,
+            50
+        ],
+        "repeats_per_size": 3,
+        "total_paired_workloads": 15,
+        "total_solver_runs": 30,
+        "random_seed": 42,
+        "solver_time_limit_seconds": 2.0,
+        "workload_type": "Synthetic variations of existing maintenance work orders"
+    },
+    "summary": [
+        {
+            "job_count": 7,
+            "mode": "COLD_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 3,
+            "average_solver_time_seconds": 0.02263333333333333,
+            "median_solver_time_seconds": 0.0218,
+            "average_total_execution_time_seconds": 0.025032733333167318,
+            "average_non_solver_overhead_seconds": 0.0023993999998339864,
+            "average_makespan_hours": 11.666666666666666,
+            "average_waiting_hours": 4.02,
+            "average_critical_completion_hours": 7.666666666666667,
+            "average_completion_hours": 7.3100000000000005,
+            "average_utilization_percentage": 98.55
+        },
+        {
+            "job_count": 7,
+            "mode": "WARM_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 3,
+            "average_solver_time_seconds": 0.014533333333333334,
+            "median_solver_time_seconds": 0.0153,
+            "average_total_execution_time_seconds": 0.017267699999896042,
+            "average_non_solver_overhead_seconds": 0.0027343666665627098,
+            "average_makespan_hours": 11.666666666666666,
+            "average_waiting_hours": 4.02,
+            "average_critical_completion_hours": 7.666666666666667,
+            "average_completion_hours": 7.3100000000000005,
+            "average_utilization_percentage": 98.55
+        },
+        {
+            "job_count": 14,
+            "mode": "COLD_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0178333333333334,
+            "median_solver_time_seconds": 2.0175,
+            "average_total_execution_time_seconds": 2.020324966666673,
+            "average_non_solver_overhead_seconds": 0.002491633333339719,
+            "average_makespan_hours": 23.833333333333332,
+            "average_waiting_hours": 9.976666666666667,
+            "average_critical_completion_hours": 7.25,
+            "average_completion_hours": 13.38,
+            "average_utilization_percentage": 100.0
+        },
+        {
+            "job_count": 14,
+            "mode": "WARM_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0244999999999997,
+            "median_solver_time_seconds": 2.0258,
+            "average_total_execution_time_seconds": 2.028764833333298,
+            "average_non_solver_overhead_seconds": 0.004264833333298264,
+            "average_makespan_hours": 23.833333333333332,
+            "average_waiting_hours": 9.976666666666667,
+            "average_critical_completion_hours": 7.25,
+            "average_completion_hours": 13.38,
+            "average_utilization_percentage": 100.0
+        },
+        {
+            "job_count": 21,
+            "mode": "COLD_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0178333333333334,
+            "median_solver_time_seconds": 2.0133,
+            "average_total_execution_time_seconds": 2.020325033333241,
+            "average_non_solver_overhead_seconds": 0.002491699999907689,
+            "average_makespan_hours": 38.333333333333336,
+            "average_waiting_hours": 17.113333333333333,
+            "average_critical_completion_hours": 10.053333333333333,
+            "average_completion_hours": 20.736666666666668,
+            "average_utilization_percentage": 99.34666666666666
+        },
+        {
+            "job_count": 21,
+            "mode": "WARM_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0129333333333332,
+            "median_solver_time_seconds": 2.0134,
+            "average_total_execution_time_seconds": 2.01790223333334,
+            "average_non_solver_overhead_seconds": 0.004968900000006826,
+            "average_makespan_hours": 38.333333333333336,
+            "average_waiting_hours": 17.106666666666666,
+            "average_critical_completion_hours": 10.053333333333333,
+            "average_completion_hours": 20.740000000000002,
+            "average_utilization_percentage": 99.34666666666666
+        },
+        {
+            "job_count": 35,
+            "mode": "COLD_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0152666666666668,
+            "median_solver_time_seconds": 2.0121,
+            "average_total_execution_time_seconds": 2.0189564666664714,
+            "average_non_solver_overhead_seconds": 0.003689799999804677,
+            "average_makespan_hours": 64.0,
+            "average_waiting_hours": 31.22,
+            "average_critical_completion_hours": 14.233333333333333,
+            "average_completion_hours": 34.86333333333334,
+            "average_utilization_percentage": 99.74
+        },
+        {
+            "job_count": 35,
+            "mode": "WARM_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0187333333333335,
+            "median_solver_time_seconds": 2.017,
+            "average_total_execution_time_seconds": 2.0259910999999797,
+            "average_non_solver_overhead_seconds": 0.007257766666646533,
+            "average_makespan_hours": 64.0,
+            "average_waiting_hours": 31.330000000000002,
+            "average_critical_completion_hours": 14.233333333333333,
+            "average_completion_hours": 34.97666666666667,
+            "average_utilization_percentage": 99.74
+        },
+        {
+            "job_count": 50,
+            "mode": "COLD_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.011066666666667,
+            "median_solver_time_seconds": 2.0096,
+            "average_total_execution_time_seconds": 2.0157363000001474,
+            "average_non_solver_overhead_seconds": 0.004669633333480583,
+            "average_makespan_hours": 92.33333333333333,
+            "average_waiting_hours": 51.03,
+            "average_critical_completion_hours": 18.933333333333334,
+            "average_completion_hours": 54.71666666666667,
+            "average_utilization_percentage": 99.82
+        },
+        {
+            "job_count": 50,
+            "mode": "WARM_START",
+            "runs": 3,
+            "valid_schedules": 3,
+            "optimal_solutions": 0,
+            "average_solver_time_seconds": 2.0162999999999998,
+            "median_solver_time_seconds": 2.0198,
+            "average_total_execution_time_seconds": 2.0259991666666792,
+            "average_non_solver_overhead_seconds": 0.009699166666679323,
+            "average_makespan_hours": 92.33333333333333,
+            "average_waiting_hours": 53.9,
+            "average_critical_completion_hours": 18.933333333333334,
+            "average_completion_hours": 57.586666666666666,
+            "average_utilization_percentage": 99.82
+        }
+    ],
+    "paired_comparisons": {
+        "total_paired_experiments": 15,
+        "warm_start_faster": 5,
+        "cold_start_faster": 10,
+        "same_execution_time": 0,
+        "warm_start_better_objective": 1,
+        "cold_start_better_objective": 4,
+        "same_objective": 10,
+        "paired_results": [
+            {
+                "scenario_id": "JOBS-07-REPEAT-01",
+                "job_count": 7,
+                "cold_total_time_seconds": 0.02518629999985933,
+                "warm_total_time_seconds": 0.019798400000127003,
+                "cold_makespan_hours": 12.0,
+                "warm_makespan_hours": 12.0,
+                "time_winner": "WARM_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": true,
+                "warm_optimal": true
+            },
+            {
+                "scenario_id": "JOBS-07-REPEAT-02",
+                "job_count": 7,
+                "cold_total_time_seconds": 0.02659159999984695,
+                "warm_total_time_seconds": 0.012991699999929551,
+                "cold_makespan_hours": 11.0,
+                "warm_makespan_hours": 11.0,
+                "time_winner": "WARM_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": true,
+                "warm_optimal": true
+            },
+            {
+                "scenario_id": "JOBS-07-REPEAT-03",
+                "job_count": 7,
+                "cold_total_time_seconds": 0.02332029999979568,
+                "warm_total_time_seconds": 0.019012999999631575,
+                "cold_makespan_hours": 12.0,
+                "warm_makespan_hours": 12.0,
+                "time_winner": "WARM_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": true,
+                "warm_optimal": true
+            },
+            {
+                "scenario_id": "JOBS-14-REPEAT-01",
+                "job_count": 14,
+                "cold_total_time_seconds": 2.020130800000061,
+                "warm_total_time_seconds": 2.0295554999997876,
+                "cold_makespan_hours": 25.0,
+                "warm_makespan_hours": 25.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-14-REPEAT-02",
+                "job_count": 14,
+                "cold_total_time_seconds": 2.017041099999915,
+                "warm_total_time_seconds": 2.0315255000000434,
+                "cold_makespan_hours": 23.5,
+                "warm_makespan_hours": 23.5,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-14-REPEAT-03",
+                "job_count": 14,
+                "cold_total_time_seconds": 2.0238030000000435,
+                "warm_total_time_seconds": 2.0252135000000635,
+                "cold_makespan_hours": 23.0,
+                "warm_makespan_hours": 23.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-21-REPEAT-01",
+                "job_count": 21,
+                "cold_total_time_seconds": 2.0306659999996555,
+                "warm_total_time_seconds": 2.0181124000000636,
+                "cold_makespan_hours": 38.0,
+                "warm_makespan_hours": 38.0,
+                "time_winner": "WARM_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-21-REPEAT-02",
+                "job_count": 21,
+                "cold_total_time_seconds": 2.0156965000001037,
+                "warm_total_time_seconds": 2.019716199999948,
+                "cold_makespan_hours": 38.5,
+                "warm_makespan_hours": 38.5,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-21-REPEAT-03",
+                "job_count": 21,
+                "cold_total_time_seconds": 2.014612599999964,
+                "warm_total_time_seconds": 2.015878100000009,
+                "cold_makespan_hours": 38.5,
+                "warm_makespan_hours": 38.5,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-35-REPEAT-01",
+                "job_count": 35,
+                "cold_total_time_seconds": 2.0155196999999134,
+                "warm_total_time_seconds": 2.019631500000287,
+                "cold_makespan_hours": 64.0,
+                "warm_makespan_hours": 64.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "TIE",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-35-REPEAT-02",
+                "job_count": 35,
+                "cold_total_time_seconds": 2.026237499999752,
+                "warm_total_time_seconds": 2.033864199999698,
+                "cold_makespan_hours": 64.0,
+                "warm_makespan_hours": 64.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "COLD_START",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-35-REPEAT-03",
+                "job_count": 35,
+                "cold_total_time_seconds": 2.0151121999997486,
+                "warm_total_time_seconds": 2.0244775999999547,
+                "cold_makespan_hours": 64.0,
+                "warm_makespan_hours": 64.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "WARM_START",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-50-REPEAT-01",
+                "job_count": 50,
+                "cold_total_time_seconds": 2.022693700000218,
+                "warm_total_time_seconds": 2.016945200000009,
+                "cold_makespan_hours": 95.5,
+                "warm_makespan_hours": 95.5,
+                "time_winner": "WARM_START",
+                "objective_winner": "COLD_START",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-50-REPEAT-02",
+                "job_count": 50,
+                "cold_total_time_seconds": 2.014245100000153,
+                "warm_total_time_seconds": 2.0294856000000436,
+                "cold_makespan_hours": 91.0,
+                "warm_makespan_hours": 91.0,
+                "time_winner": "COLD_START",
+                "objective_winner": "COLD_START",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            },
+            {
+                "scenario_id": "JOBS-50-REPEAT-03",
+                "job_count": 50,
+                "cold_total_time_seconds": 2.0102701000000707,
+                "warm_total_time_seconds": 2.031566699999985,
+                "cold_makespan_hours": 90.5,
+                "warm_makespan_hours": 90.5,
+                "time_winner": "COLD_START",
+                "objective_winner": "COLD_START",
+                "cold_valid": true,
+                "warm_valid": true,
+                "cold_optimal": false,
+                "warm_optimal": false
+            }
+        ]
+    },
+    "validation": {
+        "total_checks": 9,
+        "passed_checks": 9,
+        "failed_checks": 0,
+        "all_passed": true,
+        "checks": {
+            "expected_paired_workloads": true,
+            "both_solver_modes_present": true,
+            "all_schedules_valid": true,
+            "warm_start_hints_enabled": true,
+            "cold_start_hints_disabled": true,
+            "same_workload_job_counts": true,
+            "finite_execution_times": true,
+            "unique_scenario_ids": true,
+            "expected_workload_sizes": true
+        }
+    },
+    "experiments": [
+        {
+            "scenario_id": "JOBS-07-REPEAT-01",
+            "job_count": 7,
+            "repeat": 1,
+            "seed": 743,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0218,
+                    "total_execution_time_seconds": 0.02518629999985933,
+                    "non_solver_overhead_seconds": 0.0033862999998593296,
+                    "makespan_hours": 12.0,
+                    "average_waiting_hours": 4.71,
+                    "critical_average_completion_hours": 9.0,
+                    "average_completion_hours": 8.14,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        18,
+                        24,
+                        16
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0176,
+                    "total_execution_time_seconds": 0.019798400000127003,
+                    "non_solver_overhead_seconds": 0.0021984000001270022,
+                    "makespan_hours": 12.0,
+                    "average_waiting_hours": 4.71,
+                    "critical_average_completion_hours": 9.0,
+                    "average_completion_hours": 8.14,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "FIFO",
+                    "objective_components": [
+                        18,
+                        24,
+                        16
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-07-REPEAT-02",
+            "job_count": 7,
+            "repeat": 2,
+            "seed": 744,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0249,
+                    "total_execution_time_seconds": 0.02659159999984695,
+                    "non_solver_overhead_seconds": 0.0016915999998469503,
+                    "makespan_hours": 11.0,
+                    "average_waiting_hours": 3.71,
+                    "critical_average_completion_hours": 7.0,
+                    "average_completion_hours": 6.79,
+                    "utilization_percentage": 97.73,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        14,
+                        22,
+                        14
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0107,
+                    "total_execution_time_seconds": 0.012991699999929551,
+                    "non_solver_overhead_seconds": 0.002291699999929552,
+                    "makespan_hours": 11.0,
+                    "average_waiting_hours": 3.71,
+                    "critical_average_completion_hours": 7.0,
+                    "average_completion_hours": 6.79,
+                    "utilization_percentage": 97.73,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        14,
+                        22,
+                        14
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-07-REPEAT-03",
+            "job_count": 7,
+            "repeat": 3,
+            "seed": 745,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0212,
+                    "total_execution_time_seconds": 0.02332029999979568,
+                    "non_solver_overhead_seconds": 0.0021202999997956794,
+                    "makespan_hours": 12.0,
+                    "average_waiting_hours": 3.64,
+                    "critical_average_completion_hours": 7.0,
+                    "average_completion_hours": 7.0,
+                    "utilization_percentage": 97.92,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        14,
+                        24,
+                        14
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "OPTIMAL",
+                    "optimality_proven": true,
+                    "solver_time_seconds": 0.0153,
+                    "total_execution_time_seconds": 0.019012999999631575,
+                    "non_solver_overhead_seconds": 0.0037129999996315752,
+                    "makespan_hours": 12.0,
+                    "average_waiting_hours": 3.64,
+                    "critical_average_completion_hours": 7.0,
+                    "average_completion_hours": 7.0,
+                    "utilization_percentage": 97.92,
+                    "scheduled_work_order_count": 7,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        14,
+                        24,
+                        14
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-14-REPEAT-01",
+            "job_count": 14,
+            "repeat": 1,
+            "seed": 1443,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0175,
+                    "total_execution_time_seconds": 2.020130800000061,
+                    "non_solver_overhead_seconds": 0.0026308000000607734,
+                    "makespan_hours": 25.0,
+                    "average_waiting_hours": 10.32,
+                    "critical_average_completion_hours": 7.75,
+                    "average_completion_hours": 13.89,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        16,
+                        50,
+                        28
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0258,
+                    "total_execution_time_seconds": 2.0295554999997876,
+                    "non_solver_overhead_seconds": 0.003755499999787748,
+                    "makespan_hours": 25.0,
+                    "average_waiting_hours": 10.32,
+                    "critical_average_completion_hours": 7.75,
+                    "average_completion_hours": 13.89,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        16,
+                        50,
+                        28
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-14-REPEAT-02",
+            "job_count": 14,
+            "repeat": 2,
+            "seed": 1444,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0149,
+                    "total_execution_time_seconds": 2.017041099999915,
+                    "non_solver_overhead_seconds": 0.002141099999914964,
+                    "makespan_hours": 23.5,
+                    "average_waiting_hours": 10.18,
+                    "critical_average_completion_hours": 7.5,
+                    "average_completion_hours": 13.54,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        15,
+                        47,
+                        27
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0276,
+                    "total_execution_time_seconds": 2.0315255000000434,
+                    "non_solver_overhead_seconds": 0.003925500000043325,
+                    "makespan_hours": 23.5,
+                    "average_waiting_hours": 10.18,
+                    "critical_average_completion_hours": 7.5,
+                    "average_completion_hours": 13.54,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        15,
+                        47,
+                        27
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-14-REPEAT-03",
+            "job_count": 14,
+            "repeat": 3,
+            "seed": 1445,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0211,
+                    "total_execution_time_seconds": 2.0238030000000435,
+                    "non_solver_overhead_seconds": 0.0027030000000434207,
+                    "makespan_hours": 23.0,
+                    "average_waiting_hours": 9.43,
+                    "critical_average_completion_hours": 6.5,
+                    "average_completion_hours": 12.71,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        13,
+                        46,
+                        25
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0201,
+                    "total_execution_time_seconds": 2.0252135000000635,
+                    "non_solver_overhead_seconds": 0.00511350000006372,
+                    "makespan_hours": 23.0,
+                    "average_waiting_hours": 9.43,
+                    "critical_average_completion_hours": 6.5,
+                    "average_completion_hours": 12.71,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 14,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        13,
+                        46,
+                        25
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-21-REPEAT-01",
+            "job_count": 21,
+            "repeat": 1,
+            "seed": 2143,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0281,
+                    "total_execution_time_seconds": 2.0306659999996555,
+                    "non_solver_overhead_seconds": 0.002565999999655677,
+                    "makespan_hours": 38.0,
+                    "average_waiting_hours": 17.12,
+                    "critical_average_completion_hours": 9.83,
+                    "average_completion_hours": 20.71,
+                    "utilization_percentage": 99.34,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        20,
+                        76,
+                        41
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0134,
+                    "total_execution_time_seconds": 2.0181124000000636,
+                    "non_solver_overhead_seconds": 0.004712400000063788,
+                    "makespan_hours": 38.0,
+                    "average_waiting_hours": 16.9,
+                    "critical_average_completion_hours": 9.83,
+                    "average_completion_hours": 20.5,
+                    "utilization_percentage": 99.34,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        20,
+                        76,
+                        41
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-21-REPEAT-02",
+            "job_count": 21,
+            "repeat": 2,
+            "seed": 2144,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0133,
+                    "total_execution_time_seconds": 2.0156965000001037,
+                    "non_solver_overhead_seconds": 0.0023965000001036074,
+                    "makespan_hours": 38.5,
+                    "average_waiting_hours": 17.43,
+                    "critical_average_completion_hours": 10.5,
+                    "average_completion_hours": 21.07,
+                    "utilization_percentage": 99.35,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        21,
+                        77,
+                        42
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.015,
+                    "total_execution_time_seconds": 2.019716199999948,
+                    "non_solver_overhead_seconds": 0.004716199999947879,
+                    "makespan_hours": 38.5,
+                    "average_waiting_hours": 17.52,
+                    "critical_average_completion_hours": 10.5,
+                    "average_completion_hours": 21.17,
+                    "utilization_percentage": 99.35,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        21,
+                        77,
+                        42
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-21-REPEAT-03",
+            "job_count": 21,
+            "repeat": 3,
+            "seed": 2145,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0121,
+                    "total_execution_time_seconds": 2.014612599999964,
+                    "non_solver_overhead_seconds": 0.0025125999999637827,
+                    "makespan_hours": 38.5,
+                    "average_waiting_hours": 16.79,
+                    "critical_average_completion_hours": 9.83,
+                    "average_completion_hours": 20.43,
+                    "utilization_percentage": 99.35,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        20,
+                        77,
+                        41
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0104,
+                    "total_execution_time_seconds": 2.015878100000009,
+                    "non_solver_overhead_seconds": 0.005478100000008812,
+                    "makespan_hours": 38.5,
+                    "average_waiting_hours": 16.9,
+                    "critical_average_completion_hours": 9.83,
+                    "average_completion_hours": 20.55,
+                    "utilization_percentage": 99.35,
+                    "scheduled_work_order_count": 21,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        20,
+                        77,
+                        41
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-35-REPEAT-01",
+            "job_count": 35,
+            "repeat": 1,
+            "seed": 3543,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0121,
+                    "total_execution_time_seconds": 2.0155196999999134,
+                    "non_solver_overhead_seconds": 0.003419699999913206,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 31.49,
+                    "critical_average_completion_hours": 14.7,
+                    "average_completion_hours": 35.14,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        29,
+                        128,
+                        70
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0122,
+                    "total_execution_time_seconds": 2.019631500000287,
+                    "non_solver_overhead_seconds": 0.007431500000286917,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 31.36,
+                    "critical_average_completion_hours": 14.7,
+                    "average_completion_hours": 35.01,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        29,
+                        128,
+                        70
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-35-REPEAT-02",
+            "job_count": 35,
+            "repeat": 2,
+            "seed": 3544,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0218,
+                    "total_execution_time_seconds": 2.026237499999752,
+                    "non_solver_overhead_seconds": 0.00443749999975207,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 31.6,
+                    "critical_average_completion_hours": 14.8,
+                    "average_completion_hours": 35.24,
+                    "utilization_percentage": 99.61,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        30,
+                        128,
+                        70
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.027,
+                    "total_execution_time_seconds": 2.033864199999698,
+                    "non_solver_overhead_seconds": 0.006864199999697895,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 33.09,
+                    "critical_average_completion_hours": 14.8,
+                    "average_completion_hours": 36.73,
+                    "utilization_percentage": 99.61,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        30,
+                        128,
+                        73
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-35-REPEAT-03",
+            "job_count": 35,
+            "repeat": 3,
+            "seed": 3545,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0119,
+                    "total_execution_time_seconds": 2.0151121999997486,
+                    "non_solver_overhead_seconds": 0.003212199999748755,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 30.57,
+                    "critical_average_completion_hours": 13.2,
+                    "average_completion_hours": 34.21,
+                    "utilization_percentage": 99.61,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        26,
+                        128,
+                        68
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.017,
+                    "total_execution_time_seconds": 2.0244775999999547,
+                    "non_solver_overhead_seconds": 0.007477599999954787,
+                    "makespan_hours": 64.0,
+                    "average_waiting_hours": 29.54,
+                    "critical_average_completion_hours": 13.2,
+                    "average_completion_hours": 33.19,
+                    "utilization_percentage": 99.61,
+                    "scheduled_work_order_count": 35,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        26,
+                        128,
+                        66
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-50-REPEAT-01",
+            "job_count": 50,
+            "repeat": 1,
+            "seed": 5043,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0181,
+                    "total_execution_time_seconds": 2.022693700000218,
+                    "non_solver_overhead_seconds": 0.004593700000218082,
+                    "makespan_hours": 95.5,
+                    "average_waiting_hours": 54.02,
+                    "critical_average_completion_hours": 20.62,
+                    "average_completion_hours": 57.83,
+                    "utilization_percentage": 99.74,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        41,
+                        191,
+                        116
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0073,
+                    "total_execution_time_seconds": 2.016945200000009,
+                    "non_solver_overhead_seconds": 0.009645200000009346,
+                    "makespan_hours": 95.5,
+                    "average_waiting_hours": 54.7,
+                    "critical_average_completion_hours": 20.62,
+                    "average_completion_hours": 58.51,
+                    "utilization_percentage": 99.74,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        41,
+                        191,
+                        117
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-50-REPEAT-02",
+            "job_count": 50,
+            "repeat": 2,
+            "seed": 5044,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0096,
+                    "total_execution_time_seconds": 2.014245100000153,
+                    "non_solver_overhead_seconds": 0.004645100000153057,
+                    "makespan_hours": 91.0,
+                    "average_waiting_hours": 51.78,
+                    "critical_average_completion_hours": 18.06,
+                    "average_completion_hours": 55.42,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        36,
+                        182,
+                        111
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0198,
+                    "total_execution_time_seconds": 2.0294856000000436,
+                    "non_solver_overhead_seconds": 0.009685600000043593,
+                    "makespan_hours": 91.0,
+                    "average_waiting_hours": 53.94,
+                    "critical_average_completion_hours": 18.06,
+                    "average_completion_hours": 57.58,
+                    "utilization_percentage": 100.0,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        36,
+                        182,
+                        115
+                    ]
+                }
+            }
+        },
+        {
+            "scenario_id": "JOBS-50-REPEAT-03",
+            "job_count": 50,
+            "repeat": 3,
+            "seed": 5045,
+            "results": {
+                "COLD_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0055,
+                    "total_execution_time_seconds": 2.0102701000000707,
+                    "non_solver_overhead_seconds": 0.0047701000000706095,
+                    "makespan_hours": 90.5,
+                    "average_waiting_hours": 47.29,
+                    "critical_average_completion_hours": 18.12,
+                    "average_completion_hours": 50.9,
+                    "utilization_percentage": 99.72,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": false,
+                    "warm_start_hints_added": 0,
+                    "warm_start_strategy": null,
+                    "objective_components": [
+                        36,
+                        181,
+                        102
+                    ]
+                },
+                "WARM_START": {
+                    "valid_schedule": true,
+                    "solver_status": "FEASIBLE",
+                    "optimality_proven": false,
+                    "solver_time_seconds": 2.0218,
+                    "total_execution_time_seconds": 2.031566699999985,
+                    "non_solver_overhead_seconds": 0.009766699999985029,
+                    "makespan_hours": 90.5,
+                    "average_waiting_hours": 53.06,
+                    "critical_average_completion_hours": 18.12,
+                    "average_completion_hours": 56.67,
+                    "utilization_percentage": 99.72,
+                    "scheduled_work_order_count": 50,
+                    "warm_start_enabled": true,
+                    "warm_start_hints_added": 1,
+                    "warm_start_strategy": "PRIORITY_FIRST",
+                    "objective_components": [
+                        36,
+                        181,
+                        113
+                    ]
+                }
+            }
+        }
+    ]
+}
