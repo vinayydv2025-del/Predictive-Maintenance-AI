@@ -111,14 +111,13 @@ def load_report(path):
 
 
 if not REPORT_PATH.exists():
-    st.error(
-        "Unified platform report was not found."
-    )
+    st.error("Unified platform report was not found.")
     st.code("python run_platform.py")
     st.stop()
 
 try:
     report = load_report(str(REPORT_PATH))
+
 except (json.JSONDecodeError, OSError) as error:
     st.error(f"Could not load platform report: {error}")
     st.stop()
@@ -129,80 +128,45 @@ if not isinstance(report, dict):
 
 
 # ============================================================
-# SHARED DATA
-# ============================================================
-
-scenario_report = report.get(
-    "scenario_fleet_intelligence", {}
-)
-
-maintenance_plan = report.get(
-    "maintenance_plan", {}
-)
-
-optimization_report = report.get(
-    "optimization_results", {}
-)
-
-fleet_analytics = scenario_report.get(
-    "fleet_analytics", {}
-)
-
-fleet_health = fleet_analytics.get(
-    "fleet_health", {}
-)
-
-fleet_overview = fleet_health.get(
-    "fleet_overview", {}
-)
-
-scenario_results = scenario_report.get(
-    "scenario_results", []
-)
-
-work_orders = maintenance_plan.get(
-    "work_orders", []
-)
-
-experiments = optimization_report.get(
-    "scenario_results", []
-)
-
-aggregates = optimization_report.get(
-    "aggregated_results", {}
-)
-
-
-# ============================================================
 # HELPER FUNCTIONS
+# IMPORTANT: These must be defined before SHARED DATA.
 # ============================================================
 
 def safe_mapping(value):
+    """Return a dictionary or an empty dictionary."""
     return value if isinstance(value, dict) else {}
 
 
 def safe_list(value):
+    """Return a list or an empty list."""
     return value if isinstance(value, list) else []
 
 
 def display_number(value, decimals=2):
+    """Format numeric values safely."""
     if isinstance(value, (int, float)):
         return f"{value:,.{decimals}f}"
+
     return "—"
 
 
 def display_percent(value):
+    """Format percentages safely."""
     if isinstance(value, (int, float)):
         return f"{value:.2f}%"
+
     return "—"
 
 
 def count_dataframe(mapping, category_name="Category"):
+    """Convert a flat count dictionary into a DataFrame."""
+
     mapping = safe_mapping(mapping)
 
     rows = []
 
     for key, value in mapping.items():
+
         if isinstance(value, (int, float)):
             rows.append({
                 category_name: str(key),
@@ -213,13 +177,18 @@ def count_dataframe(mapping, category_name="Category"):
 
 
 def render_count_chart(mapping, title, chart_type="bar"):
+    """Render a bar or pie chart from a flat count dictionary."""
+
     dataframe = count_dataframe(mapping)
 
     if dataframe.empty:
-        st.info(f"No data available for {title.lower()}.")
+        st.info(
+            f"No data available for {title.lower()}."
+        )
         return
 
     if chart_type == "pie":
+
         figure = px.pie(
             dataframe,
             names="Category",
@@ -227,7 +196,9 @@ def render_count_chart(mapping, title, chart_type="bar"):
             hole=0.55,
             title=title,
         )
+
     else:
+
         figure = px.bar(
             dataframe,
             x="Category",
@@ -239,7 +210,12 @@ def render_count_chart(mapping, title, chart_type="bar"):
     figure.update_layout(
         template="plotly_dark",
         height=350,
-        margin=dict(l=15, r=15, t=55, b=15),
+        margin=dict(
+            l=15,
+            r=15,
+            t=55,
+            b=15,
+        ),
     )
 
     st.plotly_chart(
@@ -249,6 +225,8 @@ def render_count_chart(mapping, title, chart_type="bar"):
 
 
 def render_table(data, preferred_columns=None):
+    """Render a table while retaining available columns."""
+
     if not data:
         st.info("No records available.")
         return
@@ -256,6 +234,7 @@ def render_table(data, preferred_columns=None):
     dataframe = pd.DataFrame(data)
 
     if preferred_columns:
+
         available = [
             column
             for column in preferred_columns
@@ -273,6 +252,10 @@ def render_table(data, preferred_columns=None):
 
 
 def get_machine_label(item):
+    """Create a readable machine selection label."""
+
+    item = safe_mapping(item)
+
     machine_id = item.get("machine_id", "Unknown")
     scenario = item.get("scenario", "Unknown")
     severity = item.get("severity", "Unknown")
@@ -283,13 +266,22 @@ def get_machine_label(item):
 
 
 def count_solver_statuses(experiment_data):
+    """Count CP-SAT solver statuses across scenarios."""
+
     statuses = {}
 
     for scenario in safe_list(experiment_data):
+
+        scenario = safe_mapping(scenario)
+
         for result in safe_list(
-            scenario.get("results", [])
+            scenario.get("results")
         ):
+
+            result = safe_mapping(result)
+
             if result.get("strategy") == "OR_TOOLS_OPTIMAL":
+
                 status = result.get(
                     "solver_status",
                     "UNKNOWN",
@@ -300,6 +292,114 @@ def count_solver_statuses(experiment_data):
                 )
 
     return statuses
+
+
+def calculate_sensor_quality_summary(ranking_data):
+    """
+    Derive sensor-quality statistics from machine-level
+    risk-ranking records.
+
+    This avoids relying on a potentially inconsistent
+    precomputed aggregate summary.
+    """
+
+    warning_machines = []
+    not_assessed_machines = []
+    other_statuses = {}
+
+    ranking_data = safe_list(ranking_data)
+
+    for machine in ranking_data:
+
+        machine = safe_mapping(machine)
+
+        machine_id = machine.get(
+            "machine_id",
+            "Unknown",
+        )
+
+        sensor_status = machine.get(
+            "sensor_quality",
+            "UNKNOWN",
+        )
+
+        if isinstance(sensor_status, dict):
+
+            sensor_status = sensor_status.get(
+                "status",
+                "UNKNOWN",
+            )
+
+        sensor_status = str(sensor_status).upper()
+
+        if sensor_status == "SENSOR_QUALITY_WARNING":
+
+            warning_machines.append(machine_id)
+
+        elif sensor_status == "NOT_ASSESSED":
+
+            not_assessed_machines.append(machine_id)
+
+        else:
+
+            other_statuses[sensor_status] = (
+                other_statuses.get(sensor_status, 0) + 1
+            )
+
+    return {
+        "machines_with_sensor_warnings": warning_machines,
+        "sensor_warning_count": len(warning_machines),
+        "machines_not_assessed": not_assessed_machines,
+        "not_assessed_count": len(not_assessed_machines),
+        "other_status_counts": other_statuses,
+        "total_machines_in_ranking": len(ranking_data),
+    }
+
+
+# ============================================================
+# SHARED DATA
+# These assignments now run AFTER helper definitions.
+# ============================================================
+
+scenario_report = safe_mapping(
+    report.get("scenario_fleet_intelligence")
+)
+
+maintenance_plan = safe_mapping(
+    report.get("maintenance_plan")
+)
+
+optimization_report = safe_mapping(
+    report.get("optimization_results")
+)
+
+fleet_analytics = safe_mapping(
+    scenario_report.get("fleet_analytics")
+)
+
+fleet_health = safe_mapping(
+    fleet_analytics.get("fleet_health")
+)
+
+fleet_overview = safe_mapping(
+    fleet_health.get("fleet_overview")
+)
+
+scenario_results = safe_list(
+    scenario_report.get("scenario_results")
+)
+
+work_orders = safe_list(
+    maintenance_plan.get("work_orders")
+)
+
+experiments = safe_list(
+    optimization_report.get("scenario_results")
+)
+
+aggregates = safe_mapping(
+    optimization_report.get("aggregated_results")
+)
 
 
 # ============================================================
@@ -331,13 +431,15 @@ if st.sidebar.button(
     "↻ Refresh latest report",
     width="stretch",
 ):
+
     load_report.clear()
     st.rerun()
 
 st.sidebar.divider()
 
 st.sidebar.caption(
-    f"Report generated: {report.get('generated_at', 'Unknown')}"
+    f"Report generated: "
+    f"{report.get('generated_at', 'Unknown')}"
 )
 
 st.sidebar.caption(
@@ -424,11 +526,6 @@ if selected_page == "Executive Overview":
         "total_estimated_downtime_hours"
     )
 
-    optimality_count = summary.get(
-        "optimality_proven_count",
-        0,
-    )
-
     col1, col2, col3, col4 = st.columns(4)
 
     col1.metric(
@@ -456,7 +553,10 @@ if selected_page == "Executive Overview":
     col1.metric(
         "Average Physical Machine Health",
         display_percent(avg_physical_health),
-        help="Average physical health reported by the simulator.",
+        help=(
+            "Average physical health reported by "
+            "the simulator."
+        ),
     )
 
     col2.metric(
@@ -471,7 +571,10 @@ if selected_page == "Executive Overview":
     col3.metric(
         "Estimated Maintenance Cost",
         display_number(estimated_cost, 0),
-        help="Simulation units, not validated real-world currency.",
+        help=(
+            "Simulation units, not validated "
+            "real-world currency."
+        ),
     )
 
     col4.metric(
@@ -484,18 +587,28 @@ if selected_page == "Executive Overview":
     left, right = st.columns(2)
 
     with left:
-        render_count_chart(
+
+        # Severity distribution is nested.
+        # Extract the flat counts dictionary for plotting.
+
+        severity_data = safe_mapping(
             fleet_health.get(
-                "severity_distribution", {}
-            ),
+                "severity_distribution"
+            )
+        )
+
+        render_count_chart(
+            severity_data.get("counts", {}),
             "Fleet Severity Distribution",
             "pie",
         )
 
     with right:
+
         render_count_chart(
             fleet_health.get(
-                "diagnosis_distribution", {}
+                "diagnosis_distribution",
+                {},
             ),
             "Diagnosis Distribution",
             "bar",
@@ -504,18 +617,22 @@ if selected_page == "Executive Overview":
     left, right = st.columns(2)
 
     with left:
+
         render_count_chart(
             fleet_analytics.get(
-                "fault_frequency", {}
+                "fault_frequency",
+                {},
             ),
             "Detected Fault Frequency",
             "bar",
         )
 
     with right:
+
         render_count_chart(
             fleet_analytics.get(
-                "maintenance_action_distribution", {}
+                "maintenance_action_distribution",
+                {},
             ),
             "Maintenance Action Distribution",
             "pie",
@@ -532,6 +649,7 @@ if selected_page == "Executive Overview":
     )
 
     if highest_priority:
+
         a, b, c = st.columns(3)
 
         a.metric(
@@ -550,18 +668,26 @@ if selected_page == "Executive Overview":
             ),
         )
 
+        # The actual report field is ranking_score.
+
         c.metric(
-            "Risk Score",
+            "Rule-Based Risk Score",
             display_number(
                 highest_priority.get(
-                    "risk_score",
-                    highest_priority.get("score"),
+                    "ranking_score"
                 )
+            ),
+            help=(
+                "Rule-based ranking score, not a "
+                "calibrated failure probability."
             ),
         )
 
     else:
-        st.info("No highest-priority machine is available.")
+
+        st.info(
+            "No highest-priority machine is available."
+        )
 
     st.subheader("Optimization Solver Status")
 
@@ -571,11 +697,16 @@ if selected_page == "Executive Overview":
     )
 
     if not status_dataframe.empty:
+
         st.dataframe(
             status_dataframe,
             width="stretch",
             hide_index=True,
         )
+
+    else:
+
+        st.info("No optimization solver status data available.")
 
     st.caption(
         "Solver optimality is established only for scenarios "
@@ -604,6 +735,10 @@ elif selected_page == "Fleet Intelligence":
         0,
     )
 
+    analytics_metadata = safe_mapping(
+        fleet_analytics.get("analytics_metadata")
+    )
+
     col1, col2, col3 = st.columns(3)
 
     col1.metric(
@@ -618,9 +753,10 @@ elif selected_page == "Fleet Intelligence":
 
     col3.metric(
         "Total Machines Analyzed",
-        fleet_analytics.get(
-            "analytics_metadata", {}
-        ).get("total_machines_analyzed", len(scenario_results)),
+        analytics_metadata.get(
+            "total_machines_analyzed",
+            len(scenario_results),
+        ),
     )
 
     st.divider()
@@ -628,10 +764,11 @@ elif selected_page == "Fleet Intelligence":
     st.subheader("Machine Risk Ranking")
 
     risk_ranking = safe_list(
-        fleet_analytics.get("risk_ranking", [])
+        fleet_analytics.get("risk_ranking")
     )
 
     if risk_ranking:
+
         ranking_dataframe = pd.json_normalize(
             risk_ranking
         )
@@ -646,14 +783,19 @@ elif selected_page == "Fleet Intelligence":
             "Ranking is rule-based using severity and evidence. "
             "Risk scores are not calibrated probabilities."
         )
+
     else:
-        st.info("No risk ranking data available.")
+
+        st.info(
+            "No risk ranking data available."
+        )
 
     st.divider()
 
     st.subheader("Machine-Level Inspection")
 
     if scenario_results:
+
         machine_index = st.selectbox(
             "Select a machine",
             options=list(range(len(scenario_results))),
@@ -662,7 +804,9 @@ elif selected_page == "Fleet Intelligence":
             ),
         )
 
-        machine = scenario_results[machine_index]
+        machine = safe_mapping(
+            scenario_results[machine_index]
+        )
 
         diagnosis = safe_mapping(
             machine.get("final_diagnosis")
@@ -672,17 +816,26 @@ elif selected_page == "Fleet Intelligence":
 
         col1.metric(
             "Machine ID",
-            machine.get("machine_id", "Unknown"),
+            machine.get(
+                "machine_id",
+                "Unknown",
+            ),
         )
 
         col2.metric(
             "Diagnosis",
-            diagnosis.get("diagnosis", "Unknown"),
+            diagnosis.get(
+                "diagnosis",
+                "Unknown",
+            ),
         )
 
         col3.metric(
             "Severity",
-            diagnosis.get("severity", "Unknown"),
+            diagnosis.get(
+                "severity",
+                "Unknown",
+            ),
         )
 
         col4.metric(
@@ -695,64 +848,144 @@ elif selected_page == "Fleet Intelligence":
 
         st.write(
             "**Maintenance action:**",
-            diagnosis.get("maintenance_action", "Not available"),
+            diagnosis.get(
+                "maintenance_action",
+                "Not available",
+            ),
+        )
+
+        detected_faults = safe_list(
+            machine.get("detected_faults")
         )
 
         st.write(
             "**Detected faults:**",
-            ", ".join(
-                machine.get("detected_faults", [])
-            ) or "None",
+            ", ".join(detected_faults) or "None",
         )
 
         st.write(
             "**Recommendations:**"
         )
 
-        recommendations = diagnosis.get(
-            "recommendations", []
+        recommendations = safe_list(
+            diagnosis.get("recommendations")
         )
 
         if recommendations:
+
             for recommendation in recommendations:
                 st.write(f"- {recommendation}")
+
         else:
-            st.info("No recommendations available.")
+
+            st.info(
+                "No recommendations available."
+            )
 
         with st.expander("Sensor Quality Details"):
+
             st.json(
                 safe_mapping(
                     diagnosis.get("sensor_quality")
                 )
             )
 
+    else:
+
+        st.info(
+            "No machine-level diagnostic records available."
+        )
+
     st.divider()
 
     left, right = st.columns(2)
 
     with left:
+
         render_count_chart(
             fleet_analytics.get(
-                "maintenance_action_distribution", {}
+                "maintenance_action_distribution",
+                {},
             ),
             "Maintenance Action Distribution",
             "bar",
         )
 
     with right:
+
         render_count_chart(
             fleet_analytics.get(
-                "fault_frequency", {}
+                "fault_frequency",
+                {},
             ),
             "Fault Frequency",
             "bar",
         )
 
+    # Derive sensor-quality summary from machine-level
+    # ranking records rather than the inconsistent aggregate.
+
+    sensor_summary = calculate_sensor_quality_summary(
+        risk_ranking
+    )
+
     with st.expander("Sensor Quality Fleet Summary"):
-        st.json(
-            fleet_analytics.get(
-                "sensor_quality_summary", {}
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric(
+            "Sensor Warning Machines",
+            sensor_summary["sensor_warning_count"],
+        )
+
+        col2.metric(
+            "Not Assessed",
+            sensor_summary["not_assessed_count"],
+        )
+
+        col3.metric(
+            "Machines in Ranking",
+            sensor_summary["total_machines_in_ranking"],
+        )
+
+        st.write(
+            "**Machines with sensor warnings:**"
+        )
+
+        if sensor_summary["machines_with_sensor_warnings"]:
+
+            for machine_id in sensor_summary[
+                "machines_with_sensor_warnings"
+            ]:
+                st.write(f"- {machine_id}")
+
+        else:
+
+            st.info(
+                "No explicit sensor warnings found."
             )
+
+        st.write(
+            "**Machines not assessed:**"
+        )
+
+        if sensor_summary["machines_not_assessed"]:
+
+            for machine_id in sensor_summary[
+                "machines_not_assessed"
+            ]:
+                st.write(f"- {machine_id}")
+
+        else:
+
+            st.info(
+                "No machines recorded as not assessed."
+            )
+
+        st.write("**Other sensor statuses:**")
+
+        st.json(
+            sensor_summary["other_status_counts"]
         )
 
 
@@ -775,51 +1008,102 @@ elif selected_page == "AI Diagnostics":
     comparison_rows = []
 
     for item in scenario_results:
+
+        item = safe_mapping(item)
+
         injected = set(
-            item.get("injected_faults", [])
+            safe_list(
+                item.get("injected_faults")
+            )
         )
 
         detected = set(
-            item.get("detected_faults", [])
+            safe_list(
+                item.get("detected_faults")
+            )
         )
 
-        missed = sorted(injected - detected)
-        additional = sorted(detected - injected)
+        missed = sorted(
+            injected - detected
+        )
+
+        additional = sorted(
+            detected - injected
+        )
 
         if not missed and not additional:
+
             comparison = "Exact label agreement"
+
         elif detected and not missed:
-            comparison = "Injected labels detected; extra labels present"
+
+            comparison = (
+                "Injected labels detected; extra labels present"
+            )
+
         elif detected:
-            comparison = "Partial or mismatched detection"
+
+            comparison = (
+                "Partial or mismatched detection"
+            )
+
         else:
-            comparison = "No injected labels detected"
+
+            comparison = (
+                "No injected labels detected"
+            )
 
         comparison_rows.append({
+
             "Machine": item.get("machine_id"),
+
             "Scenario": item.get("scenario"),
-            "Injected Faults": ", ".join(sorted(injected)) or "None",
-            "Detected Faults": ", ".join(sorted(detected)) or "None",
-            "Missed Injected Labels": ", ".join(missed) or "None",
-            "Additional Detected Labels": ", ".join(additional) or "None",
+
+            "Injected Faults": (
+                ", ".join(sorted(injected)) or "None"
+            ),
+
+            "Detected Faults": (
+                ", ".join(sorted(detected)) or "None"
+            ),
+
+            "Missed Injected Labels": (
+                ", ".join(missed) or "None"
+            ),
+
+            "Additional Detected Labels": (
+                ", ".join(additional) or "None"
+            ),
+
             "Sensor Issue Injected": item.get(
                 "injected_sensor_quality_issue",
                 False,
             ),
+
             "Label Comparison": comparison,
+
         })
 
-    st.subheader("Scenario Diagnostic Comparison")
+    st.subheader(
+        "Scenario Diagnostic Comparison"
+    )
 
     comparison_dataframe = pd.DataFrame(
         comparison_rows
     )
 
     if not comparison_dataframe.empty:
+
         st.dataframe(
             comparison_dataframe,
             width="stretch",
             hide_index=True,
+        )
+
+    else:
+
+        st.info(
+            "No diagnostic comparison records available."
         )
 
     st.caption(
@@ -830,9 +1114,12 @@ elif selected_page == "AI Diagnostics":
 
     st.divider()
 
-    st.subheader("Diagnostic Deep Dive")
+    st.subheader(
+        "Diagnostic Deep Dive"
+    )
 
     if scenario_results:
+
         selected_index = st.selectbox(
             "Select diagnostic record",
             options=list(range(len(scenario_results))),
@@ -842,18 +1129,23 @@ elif selected_page == "AI Diagnostics":
             key="diagnostic_machine",
         )
 
-        selected_machine = scenario_results[
-            selected_index
-        ]
+        selected_machine = safe_mapping(
+            scenario_results[selected_index]
+        )
 
         diagnostic_result = safe_mapping(
-            selected_machine.get("diagnostic_result")
+            selected_machine.get(
+                "diagnostic_result"
+            )
         )
 
         final_diagnosis = safe_mapping(
             diagnostic_result.get(
                 "final_diagnosis",
-                selected_machine.get("final_diagnosis", {}),
+                selected_machine.get(
+                    "final_diagnosis",
+                    {},
+                ),
             )
         )
 
@@ -899,39 +1191,77 @@ elif selected_page == "AI Diagnostics":
             ),
         )
 
-        with st.expander("Final Diagnosis Details", expanded=True):
+        with st.expander(
+            "Final Diagnosis Details",
+            expanded=True,
+        ):
+
             st.json(final_diagnosis)
 
         model_outputs = safe_mapping(
-            diagnostic_result.get("model_outputs")
+            diagnostic_result.get(
+                "model_outputs"
+            )
         )
 
-        with st.expander("Individual AI Model Outputs"):
-            if model_outputs:
-                for model_name, model_result in model_outputs.items():
-                    st.markdown(f"**{model_name}**")
-                    st.json(model_result)
-            else:
-                st.info("Individual model outputs are unavailable.")
+        with st.expander(
+            "Individual AI Model Outputs"
+        ):
 
-        with st.expander("Sensor Quality Assessment"):
+            if model_outputs:
+
+                for model_name, model_result in model_outputs.items():
+
+                    st.markdown(
+                        f"**{model_name}**"
+                    )
+
+                    st.json(model_result)
+
+            else:
+
+                st.info(
+                    "Individual model outputs are unavailable."
+                )
+
+        with st.expander(
+            "Sensor Quality Assessment"
+        ):
+
             st.json(
-                final_diagnosis.get(
-                    "sensor_quality",
-                    {},
+                safe_mapping(
+                    final_diagnosis.get(
+                        "sensor_quality"
+                    )
                 )
             )
 
-        with st.expander("Diagnostic Limitations"):
+        with st.expander(
+            "Diagnostic Limitations"
+        ):
+
             limitations = safe_list(
-                diagnostic_result.get("limitations")
+                diagnostic_result.get(
+                    "limitations"
+                )
             )
 
             if limitations:
+
                 for limitation in limitations:
                     st.write(f"- {limitation}")
+
             else:
-                st.info("No limitation metadata found.")
+
+                st.info(
+                    "No limitation metadata found."
+                )
+
+    else:
+
+        st.info(
+            "No diagnostic records available."
+        )
 
 
 # ============================================================
@@ -955,17 +1285,26 @@ elif selected_page == "Maintenance Center":
 
     col1.metric(
         "Work Orders",
-        summary.get("work_orders_created", len(work_orders)),
+        summary.get(
+            "work_orders_created",
+            len(work_orders),
+        ),
     )
 
     col2.metric(
         "Schedule Days",
-        summary.get("schedule_days_required", 0),
+        summary.get(
+            "schedule_days_required",
+            0,
+        ),
     )
 
     col3.metric(
         "Estimated Downtime",
-        f"{display_number(summary.get('total_estimated_downtime_hours'))} hrs",
+        (
+            f"{display_number(summary.get('total_estimated_downtime_hours'))} "
+            "hrs"
+        ),
     )
 
     col4.metric(
@@ -976,14 +1315,20 @@ elif selected_page == "Maintenance Center":
             ),
             0,
         ),
-        help="Simulation units, not validated real-world currency.",
+        help=(
+            "Simulation units, not validated "
+            "real-world currency."
+        ),
     )
 
     st.divider()
 
-    st.subheader("Maintenance Work Orders")
+    st.subheader(
+        "Maintenance Work Orders"
+    )
 
     preferred_columns = [
+
         "machine_id",
         "severity",
         "diagnosis",
@@ -999,6 +1344,7 @@ elif selected_page == "Maintenance Center":
         "diagnostic_reliability",
         "recommended_action",
         "detected_faults",
+
     ]
 
     render_table(
@@ -1011,11 +1357,14 @@ elif selected_page == "Maintenance Center":
     left, right = st.columns(2)
 
     with left:
-        st.subheader("Spare Parts Forecast")
+
+        st.subheader(
+            "Spare Parts Forecast"
+        )
 
         parts_forecast = safe_list(
             maintenance_plan.get(
-                "spare_parts_forecast", []
+                "spare_parts_forecast"
             )
         )
 
@@ -1029,29 +1378,43 @@ elif selected_page == "Maintenance Center":
         )
 
     with right:
-        st.subheader("Daily Technician Capacity")
+
+        st.subheader(
+            "Daily Technician Capacity"
+        )
 
         capacity = safe_list(
             maintenance_plan.get(
-                "daily_technician_capacity", []
+                "daily_technician_capacity"
             )
         )
 
         capacity_rows = []
 
         for day in capacity:
+
+            day = safe_mapping(day)
+
             hours = safe_list(
-                day.get("technician_hours", [])
+                day.get("technician_hours")
             )
 
             for index, technician_hours in enumerate(hours):
+
                 capacity_rows.append({
+
                     "Day": day.get("day"),
-                    "Technician": f"TECHNICIAN-{index + 1:02d}",
+
+                    "Technician": (
+                        f"TECHNICIAN-{index + 1:02d}"
+                    ),
+
                     "Allocated Hours": technician_hours,
+
                 })
 
         if capacity_rows:
+
             capacity_dataframe = pd.DataFrame(
                 capacity_rows
             )
@@ -1075,22 +1438,34 @@ elif selected_page == "Maintenance Center":
                 figure,
                 width="stretch",
             )
+
         else:
-            st.info("No technician capacity data available.")
+
+            st.info(
+                "No technician capacity data available."
+            )
 
     st.divider()
 
-    with st.expander("Planning Assumptions"):
+    with st.expander(
+        "Planning Assumptions"
+    ):
+
         st.json(
             maintenance_plan.get(
-                "planning_assumptions", {}
+                "planning_assumptions",
+                {},
             )
         )
 
-    with st.expander("Maintenance Validation"):
+    with st.expander(
+        "Maintenance Validation"
+    ):
+
         st.json(
             maintenance_plan.get(
-                "validation", {}
+                "validation",
+                {},
             )
         )
 
@@ -1154,7 +1529,10 @@ elif selected_page == "Optimization Lab":
 
     col3.metric(
         "CP-SAT Average Makespan",
-        f"{display_number(cp_metrics.get('average_makespan_hours'))} hrs",
+        (
+            f"{display_number(cp_metrics.get('average_makespan_hours'))} "
+            "hrs"
+        ),
     )
 
     col4.metric(
@@ -1165,9 +1543,12 @@ elif selected_page == "Optimization Lab":
 
     st.divider()
 
-    st.subheader("Scheduling Strategy Comparison")
+    st.subheader(
+        "Scheduling Strategy Comparison"
+    )
 
     if strategy_aggregates:
+
         aggregate_dataframe = (
             pd.DataFrame.from_dict(
                 strategy_aggregates,
@@ -1184,15 +1565,20 @@ elif selected_page == "Optimization Lab":
         )
 
         metric_columns = [
+
             column
+
             for column in [
                 "average_makespan_hours",
                 "average_critical_completion_hours",
             ]
+
             if column in aggregate_dataframe.columns
+
         ]
 
         if metric_columns:
+
             chart_dataframe = aggregate_dataframe.melt(
                 id_vars=["Strategy"],
                 value_vars=metric_columns,
@@ -1220,9 +1606,17 @@ elif selected_page == "Optimization Lab":
                 width="stretch",
             )
 
+    else:
+
+        st.info(
+            "No strategy aggregate data available."
+        )
+
     st.divider()
 
-    st.subheader("Scenario Win Counts")
+    st.subheader(
+        "Scenario Win Counts"
+    )
 
     win_counts = safe_mapping(
         optimization_report.get(
@@ -1238,32 +1632,48 @@ elif selected_page == "Optimization Lab":
 
     st.divider()
 
-    st.subheader("CP-SAT Scenario Inspection")
+    st.subheader(
+        "CP-SAT Scenario Inspection"
+    )
 
     if experiments:
+
         selected_scenario_index = st.selectbox(
             "Select optimization scenario",
+
             options=list(range(len(experiments))),
+
             format_func=lambda index: (
-                f"{experiments[index].get('scenario_id', index)}"
-                f" | {experiments[index].get('scenario_type', 'Unknown')}"
+                f"{safe_mapping(experiments[index]).get('scenario_id', index)}"
+                f" | "
+                f"{safe_mapping(experiments[index]).get('scenario_type', 'Unknown')}"
             ),
         )
 
-        selected_scenario = experiments[
-            selected_scenario_index
-        ]
+        selected_scenario = safe_mapping(
+            experiments[selected_scenario_index]
+        )
 
         cp_result = next(
             (
                 result
-                for result in selected_scenario.get("results", [])
-                if result.get("strategy") == "OR_TOOLS_OPTIMAL"
+
+                for result in safe_list(
+                    selected_scenario.get("results")
+                )
+
+                if safe_mapping(result).get(
+                    "strategy"
+                ) == "OR_TOOLS_OPTIMAL"
             ),
+
             None,
         )
 
         if cp_result:
+
+            cp_result = safe_mapping(cp_result)
+
             col1, col2, col3, col4 = st.columns(4)
 
             col1.metric(
@@ -1276,29 +1686,41 @@ elif selected_page == "Optimization Lab":
 
             col2.metric(
                 "Optimality Proven",
-                "Yes" if cp_result.get(
-                    "optimality_proven",
-                    False,
-                ) else "No",
+                (
+                    "Yes"
+                    if cp_result.get(
+                        "optimality_proven",
+                        False,
+                    )
+                    else "No"
+                ),
             )
 
             col3.metric(
                 "Solver Runtime",
-                f"{display_number(cp_result.get('solver_wall_time_seconds'), 4)} sec",
+                (
+                    f"{display_number(cp_result.get('solver_wall_time_seconds'), 4)} "
+                    "sec"
+                ),
             )
 
             col4.metric(
                 "Makespan",
-                f"{display_number(cp_result.get('makespan_hours'))} hrs",
+                (
+                    f"{display_number(cp_result.get('makespan_hours'))} "
+                    "hrs"
+                ),
             )
 
             schedule = safe_list(
                 cp_result.get(
-                    "scheduled_work_orders", []
+                    "scheduled_work_orders"
                 )
             )
 
-            st.subheader("Optimized Work Schedule")
+            st.subheader(
+                "Optimized Work Schedule"
+            )
 
             render_table(
                 schedule,
@@ -1314,36 +1736,56 @@ elif selected_page == "Optimization Lab":
                 ],
             )
 
-            with st.expander("Solver Details"):
+            with st.expander(
+                "Solver Details"
+            ):
+
                 st.json({
+
                     "solver_status": cp_result.get(
                         "solver_status"
                     ),
+
                     "solver_objective_value": cp_result.get(
                         "solver_objective_value"
                     ),
+
                     "solver_best_bound": cp_result.get(
                         "solver_best_bound"
                     ),
+
                     "optimality_proven": cp_result.get(
                         "optimality_proven"
                     ),
+
                     "warm_start_enabled": cp_result.get(
                         "warm_start_enabled"
                     ),
+
                     "warm_start_strategy": cp_result.get(
                         "warm_start_strategy"
                     ),
+
                 })
 
         else:
+
             st.warning(
                 "No CP-SAT result found for this scenario."
             )
 
+    else:
+
+        st.info(
+            "No optimization scenarios available."
+        )
+
     st.divider()
 
-    with st.expander("Optimization Methodology"):
+    with st.expander(
+        "Optimization Methodology"
+    ):
+
         st.write(
             optimization_report.get(
                 "objective",
@@ -1372,7 +1814,10 @@ elif selected_page == "Optimization Lab":
             )
         )
 
-    with st.expander("Optimization Validation"):
+    with st.expander(
+        "Optimization Validation"
+    ):
+
         st.json(
             optimization_report.get(
                 "validation",
