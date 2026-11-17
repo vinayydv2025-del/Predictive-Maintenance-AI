@@ -1,26 +1,32 @@
 # Industrial Predictive Maintenance & Intelligence Platform
 
-**Digital Twin | Hybrid AI Diagnostics | Fleet Intelligence | Maintenance Planning | CP-SAT Optimization**
+An end-to-end industrial predictive maintenance and machine intelligence project combining digital twin simulation, hybrid AI diagnostics, fleet intelligence, maintenance planning, and mathematical optimization.
 
-[![Live Demo](https://img.shields.io/badge/Live-Dashboard-FF4B4B?logo=streamlit&logoColor=white)](https://predictive-maintenance-ai-hjtlxffgfvdc7jd6dofuh5.streamlit.app/)
-[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![Optimization](https://img.shields.io/badge/Optimization-OR--Tools-4285F4)](https://developers.google.com/optimization)
+The system simulates industrial equipment, analyzes sensor readings, detects potential machine faults, generates maintenance work orders, and optimizes technician schedules using Google OR-Tools CP-SAT.
 
-## Live Application
+🚀 **Live Demo**
 
-**Explore the deployed platform:**  
-https://predictive-maintenance-ai-hjtlxffgfvdc7jd6dofuh5.streamlit.app/
+Live Dashboard: [https://predictive-maintenance-ai-hjtlxffgfvdc7jd6dofuh5.streamlit.app/](https://predictive-maintenance-ai-hjtlxffgfvdc7jd6dofuh5.streamlit.app/)
 
-## Overview
+The application is deployed on Streamlit Community Cloud.
 
-The Industrial Predictive Maintenance & Intelligence Platform is an end-to-end prototype that combines industrial machine simulation, AI-based fault diagnostics, fleet-level intelligence, maintenance planning, and mathematical optimization.
+## Key Features
 
-The platform simulates industrial equipment, injects controlled faults into sensor readings, evaluates diagnostic outputs using multiple AI models, generates maintenance work orders, and optimizes technician schedules using Google OR-Tools CP-SAT.
+**Industrial Digital Twin:** Multi-machine simulation with configurable operating conditions, degradation, sensor readings, and controlled fault injection.
 
-It also provides an interactive Streamlit dashboard for exploring machine health, fault diagnostics, maintenance operations, and optimization results.
+**Hybrid AI Diagnostics:** XGBoost failure prediction, Isolation Forest anomaly detection, synthetic fault classification, and sensor quality assessment.
 
-## Platform Architecture
+**Explainable AI:** SHAP-based feature contribution analysis for understanding model predictions.
+
+**Fleet Intelligence:** Fleet health analysis, machine severity classification, rule-based risk ranking, fault frequency analysis, and maintenance recommendations.
+
+**Maintenance Planning:** Automated maintenance work order generation, fault-specific maintenance requirements, spare parts forecasting, and technician capacity planning.
+
+**Maintenance Optimization:** Google OR-Tools CP-SAT optimization for technician assignment, scheduling constraints, and maintenance strategy comparison.
+
+**Interactive Dashboard:** Streamlit interface for executive overview, fleet intelligence, AI diagnostics, maintenance operations, and optimization results.
+
+## System Architecture
 
 ```text
 Industrial Digital Twin
@@ -64,78 +70,11 @@ OR-Tools CP-SAT Optimization
 Interactive Streamlit Dashboard
 ```
 
-## Key Features
-
-### 1. Industrial Digital Twin
-
-- Multi-machine industrial simulation.
-- Configurable machine operating conditions.
-- Simulated degradation and sensor readings.
-- Controlled fault injection.
-- Multiple machine operating scenarios.
-
-### 2. Hybrid AI Diagnostics
-
-- XGBoost-based machine failure prediction.
-- Isolation Forest anomaly detection.
-- Synthetic fault classification.
-- Multi-label fault diagnostics.
-- Sensor noise and quality assessment.
-- Explainability using SHAP.
-
-### 3. Fleet Intelligence
-
-- Fleet-level health analysis.
-- Machine severity classification.
-- Rule-based machine risk ranking.
-- Fault frequency analysis.
-- Maintenance action recommendations.
-- Sensor-quality fleet assessment.
-
-### 4. Intelligent Maintenance Planning
-
-- Automated maintenance work order generation.
-- Fault-specific maintenance requirements.
-- Spare parts forecasting.
-- Technician capacity planning.
-- Estimated maintenance cost and downtime.
-
-### 5. CP-SAT Maintenance Optimization
-
-Google OR-Tools CP-SAT is used to optimize maintenance scheduling.
-
-The optimization framework considers:
-
-- Technician assignment.
-- Technician scheduling constraints.
-- Prevention of overlapping jobs.
-- Maintenance priorities.
-- Job completion times.
-- Scheduling strategy comparisons.
-
-The platform compares five scheduling strategies:
-
-1. Priority First
-2. Shortest Processing Time
-3. Severity First
-4. FIFO
-5. OR-Tools Optimal
-
-### 6. Interactive Dashboard
-
-The Streamlit application provides five pages:
-
-- Executive Overview
-- Fleet Intelligence
-- AI Diagnostics
-- Maintenance Center
-- Optimization Lab
-
 ## Technology Stack
 
 | Category | Technologies |
 |---|---|
-| Programming | Python |
+| Language | Python 3.12 |
 | Data Processing | Pandas, NumPy |
 | Machine Learning | Scikit-learn, XGBoost |
 | Anomaly Detection | Isolation Forest |
@@ -146,9 +85,32 @@ The Streamlit application provides five pages:
 | Testing | Python unittest |
 | Version Control | Git, GitHub |
 
-## Demonstrated Results
+## Dataset
 
-The current integrated simulation run produced the following results:
+The XGBoost failure prediction model uses the UCI AI4I 2020 Predictive Maintenance dataset.
+
+Original dataset characteristics:
+
+| Dataset characteristic | Value |
+|---|---:|
+| Total records | 10,000 |
+| Original columns | 14 |
+| Normal records | 9,661 |
+| Machine failure records | 339 |
+| Missing values | 0 |
+| Duplicate records | 0 |
+
+The dataset contains machine operating information such as air temperature, process temperature, rotational speed, torque, tool wear, and machine type.
+
+Dataset: [AI4I 2020 Predictive Maintenance Dataset – UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset)
+
+The industrial digital twin and controlled fault injection experiments use simulated data.
+
+## Industrial Simulation
+
+The platform uses a simulated industrial environment containing multiple machines and controlled operating scenarios.
+
+Current simulation configuration:
 
 | Metric | Result |
 |---|---:|
@@ -156,22 +118,20 @@ The current integrated simulation run produced the following results:
 | Simulation cycles | 100 |
 | Diagnostic scenarios | 8 |
 | Maintenance work orders | 7 |
+| Machines without work orders | 1 |
 | Maintenance scheduling days | 2 |
-| Estimated downtime | 25 hours |
-| Estimated maintenance cost | 2,870 simulation units |
-| Optimization scenarios | 25 |
-| Scheduling strategies compared | 5 |
-| CP-SAT optimality proven | 25/25 scenarios |
 
-**Optimization result:** OR-Tools CP-SAT achieved an average makespan of 12.50 hours across the 25 tested optimization scenarios.
+The simulator generates machine operating conditions, health information, sensor readings, and controlled fault scenarios.
 
-These results describe the current controlled simulation experiments, not guaranteed performance in real industrial deployments.
+## AI Diagnostics and Model Development
 
-## AI Model Evaluation
+The platform combines multiple machine learning components for failure prediction, anomaly detection, and fault diagnosis.
+
+### XGBoost Failure Prediction
 
 The XGBoost failure prediction model was trained and evaluated using the UCI AI4I 2020 Predictive Maintenance dataset.
 
-Selected held-out test results:
+Final held-out test results:
 
 | Metric | Score |
 |---|---:|
@@ -181,9 +141,182 @@ Selected held-out test results:
 | ROC-AUC | 0.9784 |
 | PR-AUC | 0.7493 |
 
-The project also includes machine-held-out experiments for anomaly detection and synthetic fault classification.
+The model uses machine operating features such as air temperature, process temperature, rotational speed, torque, tool wear, and machine type.
 
-**Important:** Results from controlled synthetic fault injection should not be interpreted as evidence of equivalent accuracy on real industrial equipment.
+### Anomaly Detection
+
+Isolation Forest is used for identifying anomalous machine operating conditions.
+
+Machine-held-out evaluation results from controlled synthetic fault experiments:
+
+| Metric | Score |
+|---|---:|
+| Precision | 0.9144 |
+| Recall | 0.8354 |
+| F1 Score | 0.8731 |
+| ROC-AUC | 0.9958 |
+| PR-AUC | 0.9635 |
+
+The project also includes synthetic fault classification and multi-label fault diagnostics experiments.
+
+These synthetic evaluation results should not be interpreted as evidence of equivalent performance on real industrial equipment.
+
+### Explainable AI – SHAP
+
+SHAP is integrated to analyze feature contributions and help interpret model predictions.
+
+The explanation module identifies the features contributing to individual model predictions. Feature attribution does not establish physical causation.
+
+## Fleet Intelligence
+
+The fleet intelligence module provides:
+
+- Fleet-level health analysis.
+- Machine severity classification.
+- Rule-based machine risk ranking.
+- Fault frequency analysis.
+- Maintenance action recommendations.
+- Sensor-quality fleet assessment.
+- Machine prioritization.
+
+The machine risk ranking uses a transparent rule-based scoring system rather than a calibrated failure probability.
+
+## Intelligent Maintenance Planning
+
+The maintenance planning module automatically generates work orders based on detected faults and machine conditions.
+
+Supported functionality includes:
+
+- Fault-specific maintenance requirements.
+- Automated work order generation.
+- Spare parts forecasting.
+- Technician capacity planning.
+- Maintenance scheduling.
+- Estimated maintenance cost and downtime.
+
+The current integrated simulation generated 7 maintenance work orders across 2 scheduling days.
+
+Estimated maintenance cost: 2,870 simulation units.
+
+Estimated downtime: 25 hours.
+
+These are simulation estimates, not validated real-world maintenance costs.
+
+## CP-SAT Maintenance Optimization
+
+The project uses Google OR-Tools CP-SAT to optimize technician assignments and maintenance schedules.
+
+The optimization framework considers:
+
+- Technician assignment.
+- Technician scheduling constraints.
+- Prevention of overlapping jobs.
+- Maintenance priorities.
+- Job completion times.
+- Scheduling strategy comparisons.
+
+Five scheduling strategies are compared:
+
+1. Priority First
+2. Shortest Processing Time
+3. Severity First
+4. FIFO
+5. OR-Tools Optimal
+
+### Optimization Results
+
+| Metric | Result |
+|---|---:|
+| Optimization scenarios | 25 |
+| Scheduling strategies compared | 5 |
+| CP-SAT optimality proven | 25/25 |
+| Average makespan | 12.50 hours |
+
+The results represent controlled optimization experiments. Optimality is established for the tested scenarios where the solver reports an optimal status.
+
+## Interactive Dashboard
+
+The Streamlit application provides five pages:
+
+- Executive Overview
+- Fleet Intelligence
+- AI Diagnostics
+- Maintenance Center
+- Optimization Lab
+
+The dashboard provides visual insights into machine health, fleet risk, fault diagnostics, maintenance operations, and optimization results.
+
+## Running the Project
+
+### Prerequisites
+
+- Python 3.12
+- Git
+- Virtual environment support
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/vinayydv2025-del/Predictive-Maintenance-AI.git
+cd Predictive-Maintenance-AI
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Activate it in Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+### 3. Install dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 4. Generate the integrated platform report
+
+```bash
+python run_platform.py
+```
+
+### 5. Launch the dashboard
+
+```bash
+streamlit run app/dashboard.py
+```
+
+Open the local URL provided by Streamlit, usually:
+
+```text
+http://localhost:8501
+```
+
+## Testing
+
+The project includes automated tests for:
+
+- Platform integration and pipeline validation.
+- Digital twin and simulation stages.
+- Fault and diagnostic consistency.
+- Maintenance planning constraints.
+- Technician scheduling feasibility.
+- Optimization scenario validation.
+- Solver status and optimality reporting.
+- Work order and machine references.
+
+Run the platform integration test suite:
+
+```bash
+python -m unittest -v tests.test_platform_integration
+```
+
+Latest verified platform integration result: 17 tests passed.
 
 ## Project Structure
 
@@ -222,64 +355,59 @@ Predictive-Maintenance-AI/
 └── README.md
 ```
 
-## Run Locally
+## Dashboard Screenshots
 
-### 1. Clone the repository
+### 1. Executive Overview
 
-```bash
-git clone https://github.com/vinayydv2025-del/Predictive-Maintenance-AI.git
-cd Predictive-Maintenance-AI
-```
+![Executive Overview 1](screenshots/Executive_Overview_01.png)
 
-### 2. Create a virtual environment
+![Executive Overview 2](screenshots/Executive_Overview_02.png)
 
-```bash
-python -m venv .venv
-```
+![Executive Overview 3](screenshots/Executive_Overview_03.png)
 
-Activate it on Windows:
+### 2. Fleet Intelligence
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+![Fleet Intelligence 1](screenshots/Fleet_Intelligence_01.png)
 
-### 3. Install dependencies
+![Fleet Intelligence 2](screenshots/Fleet_Intelligence_02.png)
 
-```bash
-python -m pip install -r requirements.txt
-```
+![Fleet Intelligence 3](screenshots/Fleet_Intelligence_03.png)
 
-### 4. Generate the integrated platform report
+### 3. AI Diagnostics
 
-```bash
-python run_platform.py
-```
+![AI Diagnostics 1](screenshots/AI_Diagnostics_01.png)
 
-### 5. Launch the dashboard
+![AI Diagnostics 2](screenshots/AI_Diagnostics_02.png)
 
-```bash
-streamlit run app/dashboard.py
-```
+![AI Diagnostics 3](screenshots/AI_Diagnostics_03.png)
 
-Open the local URL provided by Streamlit, usually:
+![AI Diagnostics 4](screenshots/AI_Diagnostics_04.png)
 
-```text
-http://localhost:8501
-```
+### SHAP Explainability
 
-## Run Tests
+![SHAP Feature Importance](screenshots/shap_importance.png)
 
-Execute the platform integration tests:
+![SHAP Summary](screenshots/shap_summary.png)
 
-```bash
-python -m unittest -v tests.test_platform_integration
-```
+### 4. Maintenance Center
 
-The integration suite validates the platform pipeline, diagnostic and maintenance constraints, scheduling feasibility, and optimization scenario consistency.
+![Maintenance Center 1](screenshots/Maintainance_Center_01.png)
 
-## Data and Evaluation Limitations
+![Maintenance Center 2](screenshots/Maintainance_Center_02.png)
 
-This project is an experimental predictive maintenance prototype.
+### 5. Optimization Lab
+
+![Optimization Lab 1](screenshots/Optimization_Lab_01.png)
+
+![Optimization Lab 2](screenshots/Optimization_Lab_02.png)
+
+![Optimization Lab 3](screenshots/Optimization_Lab_03.png)
+
+![Optimization Lab 4](screenshots/Optimization_Lab_04.png)
+
+## Limitations and Future Improvements
+
+The project is an experimental predictive maintenance prototype.
 
 - The AI4I 2020 dataset is used for the XGBoost failure prediction model.
 - The industrial digital twin and injected fault scenarios use simulated data.
@@ -289,7 +417,7 @@ This project is an experimental predictive maintenance prototype.
 - CP-SAT optimality is established only for scenarios where the solver reports an optimal status.
 - The platform is not a certified industrial safety or equipment-control system.
 
-## Future Improvements
+Potential future enhancements include:
 
 - Real-time IoT sensor integration.
 - Remaining Useful Life (RUL) estimation with suitable real-world degradation data.
@@ -302,14 +430,4 @@ This project is an experimental predictive maintenance prototype.
 
 ## Author
 
-**Vinay**
-
-B.Tech — Information Technology
-
-GitHub: https://github.com/vinayydv2025-del
-
----
-
-**Live Demo:** https://predictive-maintenance-ai-hjtlxffgfvdc7jd6dofuh5.streamlit.app/
-
-**Source Code:** https://github.com/vinayydv2025-del/Predictive-Maintenance-AI
+Developed as an end-to-end industrial predictive maintenance and machine intelligence portfolio project, demonstrating practical implementation of digital twin simulation, machine learning, explainable AI, fleet analytics, maintenance planning, mathematical optimization, dashboard development, and software testing.
